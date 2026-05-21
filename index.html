@@ -1385,6 +1385,65 @@ body[data-mode="long"]  .btn-play { border-color: var(--long);  background: var(
   .lofi-btn  { bottom: 20px; left: 16px; width: 42px; height: 42px; font-size: 18px; }
   .lofi-panel { width: calc(100vw - 32px); left: 16px; }
 }
+
+/* ---- CYBER-DASHBOARD (TASKS & SCRATCHPAD) ---- */
+.dashboard-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;
+}
+.dash-panel {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px; backdrop-filter: blur(12px);
+  display: flex; flex-direction: column;
+}
+.dash-header {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+}
+.dash-title {
+  font-size: 9px; color: var(--focus); text-transform: uppercase;
+  letter-spacing: 0.24em; font-weight: 700;
+}
+.dash-title.long-color { color: var(--short); }
+/* Tasks */
+.task-input-wrap { display: flex; gap: 6px; margin-bottom: 12px; }
+.task-input {
+  flex: 1; background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); padding: 8px 10px;
+  font-family: 'Outfit', sans-serif; font-size: 13px; transition: border-color 0.2s;
+}
+.task-input:focus { outline: none; border-color: var(--focus); box-shadow: 0 0 8px var(--focus-d); }
+.btn-add-task {
+  background: var(--focus-d); border: 1px solid var(--focus); border-radius: 8px;
+  color: var(--focus); padding: 0 12px; font-weight: 700; cursor: pointer; transition: all 0.2s;
+}
+.btn-add-task:hover { background: rgba(0,212,255,0.22); box-shadow: 0 0 10px var(--focus-d); }
+.task-list { display: flex; flex-direction: column; gap: 6px; flex: 1; overflow-y: auto; max-height: 180px; }
+.task-item {
+  display: flex; align-items: center; gap: 8px; background: rgba(0,212,255,0.03);
+  border: 1px solid rgba(0,212,255,0.1); padding: 8px 10px; border-radius: 8px; transition: all 0.2s;
+}
+.task-item:hover { border-color: rgba(0,212,255,0.3); }
+.task-item.done { opacity: 0.5; }
+.task-item.done .task-text { text-decoration: line-through; color: var(--text-dim); }
+.task-checkbox {
+  appearance: none; width: 16px; height: 16px; border: 1px solid var(--focus);
+  border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  background: transparent; flex-shrink: 0;
+}
+.task-checkbox:checked { background: var(--focus); }
+.task-checkbox:checked::after { content: '✓'; color: #000; font-size: 10px; font-weight: 900; }
+.task-text { flex: 1; font-size: 13px; color: var(--text); word-break: break-word; }
+.task-del { color: var(--text-faint); font-size: 12px; cursor: pointer; background: none; border: none; padding: 2px 4px; }
+.task-del:hover { color: #ff6b6b; }
+/* Scratchpad */
+.scratchpad {
+  flex: 1; background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); padding: 12px;
+  font-family: 'Orbitron', monospace; font-size: 12px; line-height: 1.6;
+  resize: none; transition: border-color 0.2s; width: 100%; min-height: 160px;
+}
+.scratchpad:focus { outline: none; border-color: var(--short); box-shadow: 0 0 12px var(--short-d); }
+.scratchpad::placeholder { color: var(--text-faint); }
+@media (max-width: 600px) { .dashboard-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 
@@ -1494,6 +1553,26 @@ body[data-mode="long"]  .btn-play { border-color: var(--long);  background: var(
       📋 Ver historial completadas (<span id="history-count">0</span>)
     </div>
     <div class="history-list" id="history-list"></div>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="dash-panel">
+      <div class="dash-header">
+        <div class="dash-title">⚡ Cyber-Tasks</div>
+      </div>
+      <div class="task-input-wrap">
+        <input type="text" id="new-task-input" class="task-input" placeholder="Añadir tarea rápida..." onkeydown="if(event.key==='Enter')window.addTask()">
+        <button class="btn-add-task" onclick="window.addTask()">＋</button>
+      </div>
+      <div class="task-list" id="task-list"></div>
+    </div>
+    <div class="dash-panel">
+      <div class="dash-header">
+        <div class="dash-title long-color">📝 Scratchpad</div>
+        <div style="font-size:9px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.1em">Autosave</div>
+      </div>
+      <textarea id="scratchpad-input" class="scratchpad" placeholder="> Escribe aquí tus notas...&#10;> Se guardan localmente en tu navegador."></textarea>
+    </div>
   </div>
 
   <a href="toolkit.html" class="toolkit-btn">
@@ -3126,6 +3205,57 @@ function notifyUser(title, body) {
 }
 
 // =====================================================================
+// CYBER-DASHBOARD (TASKS & SCRATCHPAD)
+// =====================================================================
+let cyberTasks = JSON.parse(localStorage.getItem('pxp_cyber_tasks') || '[]');
+
+function renderCyberTasks() {
+  const list = document.getElementById('task-list');
+  if (!list) return;
+  list.innerHTML = '';
+  cyberTasks.forEach((t, i) => {
+    list.innerHTML += `
+      <div class="task-item ${t.done ? 'done' : ''}">
+        <input type="checkbox" class="task-checkbox" ${t.done ? 'checked' : ''} onchange="window.toggleTask(${i})">
+        <div class="task-text">${t.text}</div>
+        <button class="task-del" onclick="window.deleteTask(${i})" title="Eliminar">✕</button>
+      </div>
+    `;
+  });
+}
+
+window.addTask = function() {
+  const input = document.getElementById('new-task-input');
+  const text = input.value.trim();
+  if (!text) return;
+  cyberTasks.unshift({ text, done: false });
+  localStorage.setItem('pxp_cyber_tasks', JSON.stringify(cyberTasks));
+  input.value = '';
+  renderCyberTasks();
+};
+
+window.toggleTask = function(i) {
+  cyberTasks[i].done = !cyberTasks[i].done;
+  localStorage.setItem('pxp_cyber_tasks', JSON.stringify(cyberTasks));
+  renderCyberTasks();
+};
+
+window.deleteTask = function(i) {
+  cyberTasks.splice(i, 1);
+  localStorage.setItem('pxp_cyber_tasks', JSON.stringify(cyberTasks));
+  renderCyberTasks();
+};
+
+function initScratchpad() {
+  const pad = document.getElementById('scratchpad-input');
+  if (!pad) return;
+  pad.value = localStorage.getItem('pxp_scratchpad') || '';
+  pad.addEventListener('input', () => {
+    localStorage.setItem('pxp_scratchpad', pad.value);
+  });
+}
+
+// =====================================================================
 // BOOT
 // =====================================================================
 initAll();
@@ -3133,6 +3263,8 @@ initAll();
 renderMissions();
 renderSlot();
 renderHistory();
+renderCyberTasks();
+initScratchpad();
 // Exponer funciones globales para Firebase
 window.S       = S;
 window.initAll = initAll;
