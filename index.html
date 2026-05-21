@@ -3222,6 +3222,11 @@ function toggleLofi() {
 let zenActive = false;
 
 function toggleZenMode() {
+  if (!S.skills.includes('t1_zen')) {
+    toast('t-warn', '🔒 MODO ZEN BLOQUEADO', 'Desbloquéalo primero en el Árbol de Habilidades (Skills).');
+    return;
+  }
+
   zenActive = !zenActive;
   document.body.classList.toggle('zen-mode', zenActive);
   document.getElementById('btn-zen').classList.toggle('active', zenActive);
