@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9027862604686644" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#04060d">
+  <title>Guías de Estudio — Técnicas para Estudiar Mejor | PomodoroXP</title>
+  <meta name="description" content="Aprende las mejores técnicas de estudio: Método Feynman, Repetición Espaciada, Método Cornell, Active Recall y Chunking. Guías completas para estudiantes universitarios.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════════════
+   VARIABLES & RESET
+══════════════════════════════════════════════ */
+:root {
+  --bg:        #04060d;
+  --bg2:       #070c18;
+  --bg3:       #0c1425;
+  --card:      rgba(8,14,28,0.88);
+  --border:    rgba(0,180,255,0.10);
+  --border-h:  rgba(0,212,255,0.30);
+  --focus:     #00d4ff;  --focus-d:  rgba(0,212,255,0.13);
+  --short:     #00ff98;  --short-d:  rgba(0,255,152,0.12);
+  --long:      #b06aff;  --long-d:   rgba(176,106,255,0.12);
+  --xp:        #ff7043;  --xp-d:     rgba(255,112,67,0.13);
+  --gold:      #ffd600;  --gold-d:   rgba(255,214,0,0.12);
+  --text:      #dce8f8;
+  --text-dim:  #5c78a8;
+  --text-faint:#2a3a5a;
+  --radius:    14px;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif; min-height:100vh; overflow-x:hidden; }
+
+/* ══ BACKGROUND ══ */
+.bg-grid { position:fixed; inset:0; background-image:linear-gradient(rgba(0,212,255,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.022) 1px,transparent 1px); background-size:44px 44px; pointer-events:none; z-index:0; }
+.bg-orb  { position:fixed; pointer-events:none; z-index:0; border-radius:50%; filter:blur(100px); }
+.bg-orb-1 { width:600px; height:600px; top:-200px; left:50%; transform:translateX(-50%); background:radial-gradient(circle,rgba(0,212,255,0.06) 0%,transparent 70%); }
+.bg-orb-2 { width:450px; height:450px; bottom:-100px; right:-80px; background:radial-gradient(circle,rgba(176,106,255,0.055) 0%,transparent 70%); }
+.bg-orb-3 { width:380px; height:380px; top:40%; left:-100px; background:radial-gradient(circle,rgba(0,255,152,0.04) 0%,transparent 70%); }
+
+/* ══ TOPBAR ══ */
+.topbar { position:sticky; top:0; z-index:200; background:rgba(4,6,13,0.96); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:0 28px; height:60px; display:flex; align-items:center; justify-content:space-between; }
+.topbar-left { display:flex; align-items:center; gap:16px; }
+.topbar-logo { font-family:'Orbitron',monospace; font-size:15px; font-weight:900; letter-spacing:0.1em; background:linear-gradient(135deg,var(--focus) 0%,#fff 70%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; text-decoration:none; }
+.topbar-sep  { color:var(--text-faint); font-size:18px; }
+.topbar-page { font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.2em; font-weight:600; }
+.topbar-nav  { display:flex; align-items:center; gap:8px; }
+.topbar-back { display:flex; align-items:center; gap:7px; background:var(--focus-d); border:1px solid var(--focus); color:var(--focus); padding:7px 14px; border-radius:9px; font-size:12px; font-weight:700; text-decoration:none; transition:all .22s; }
+.topbar-back:hover { background:rgba(0,212,255,0.22); box-shadow:0 0 16px var(--focus-d); }
+.topbar-badge { font-size:9px; font-weight:700; letter-spacing:0.14em; padding:4px 10px; border-radius:20px; background:rgba(0,255,152,0.08); color:var(--short); border:1px solid rgba(0,255,152,0.2); }
+
+/* ══ LAYOUT ══ */
+.page { position:relative; z-index:1; max-width:820px; margin:0 auto; padding:44px 24px 100px; }
+
+/* ══ PAGE HERO ══ */
+.page-hero { margin-bottom:48px; text-align:center; }
+.page-hero-tag { font-size:10px; color:var(--short); text-transform:uppercase; letter-spacing:0.32em; font-weight:700; margin-bottom:14px; }
+.page-hero-title {
+  font-family:'Orbitron',monospace;
+  font-size:clamp(24px,5vw,40px);
+  font-weight:900; line-height:1.2;
+  background:linear-gradient(135deg,var(--focus) 0%,var(--short) 50%,#fff 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  margin-bottom:16px;
+}
+.page-hero-sub { font-size:15px; color:var(--text-dim); line-height:1.75; max-width:560px; margin:0 auto; }
+
+/* ══ TABLE OF CONTENTS ══ */
+.toc {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:20px 24px;
+  margin-bottom:36px;
+  backdrop-filter:blur(12px);
+}
+.toc-title { font-size:9px; color:var(--focus); text-transform:uppercase; letter-spacing:0.24em; font-weight:700; margin-bottom:14px; }
+.toc-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.toc-list li { display:flex; align-items:center; gap:10px; }
+.toc-num { font-family:'Orbitron',monospace; font-size:10px; font-weight:700; color:var(--text-faint); min-width:18px; }
+.toc-list a { font-size:13px; color:var(--text-dim); text-decoration:none; transition:color .2s; }
+.toc-list a:hover { color:var(--focus); }
+.toc-tag { font-size:9px; padding:2px 8px; border-radius:20px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; }
+
+/* ══ ARTICLE CARD ══ */
+.article {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:34px 36px;
+  margin-bottom:28px;
+  backdrop-filter:blur(12px);
+  transition:border-color .3s;
+  scroll-margin-top:80px;
+}
+.article:hover { border-color:var(--border-h); }
+
+.article-header { margin-bottom:24px; }
+.article-meta { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.article-cat { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.22em; padding:3px 10px; border-radius:20px; }
+.article-cat.neuroscience { background:rgba(0,212,255,0.1); color:var(--focus); border:1px solid rgba(0,212,255,0.2); }
+.article-cat.memory       { background:rgba(176,106,255,0.1); color:var(--long); border:1px solid rgba(176,106,255,0.2); }
+.article-cat.notetaking   { background:rgba(0,255,152,0.1); color:var(--short); border:1px solid rgba(0,255,152,0.2); }
+.article-cat.technique    { background:rgba(255,214,0,0.1); color:var(--gold); border:1px solid rgba(255,214,0,0.2); }
+.article-cat.psychology   { background:rgba(255,112,67,0.1); color:var(--xp); border:1px solid rgba(255,112,67,0.2); }
+.article-read-time { font-size:10px; color:var(--text-faint); }
+.article-num {
+  font-family:'Orbitron',monospace;
+  font-size:11px; font-weight:900;
+  color:var(--text-faint);
+}
+
+.article-title {
+  font-family:'Orbitron',monospace;
+  font-size:clamp(17px,2.5vw,22px);
+  font-weight:900; color:var(--text);
+  line-height:1.3; margin-bottom:8px;
+}
+.article-intro { font-size:14px; color:var(--text-dim); line-height:1.75; margin-bottom:0; }
+
+/* ══ ARTICLE BODY ══ */
+.article-body { margin-top:24px; border-top:1px solid var(--border); padding-top:24px; }
+.article-section-title {
+  font-size:9px; text-transform:uppercase; letter-spacing:0.24em;
+  font-weight:700; margin-bottom:10px; margin-top:22px;
+}
+.article-section-title:first-child { margin-top:0; }
+.article-p { font-size:14px; color:var(--text-dim); line-height:1.8; margin-bottom:14px; }
+.article-p strong { color:var(--text); }
+.article-p:last-child { margin-bottom:0; }
+
+/* Info boxes */
+.info-box { border-radius:11px; padding:16px 18px; margin:16px 0; }
+.info-box-title { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:8px; }
+.info-box-body { font-size:13px; line-height:1.7; }
+.info-box.cyan  { background:rgba(0,212,255,0.05); border:1px solid rgba(0,212,255,0.18); }
+.info-box.cyan  .info-box-title { color:var(--focus); }
+.info-box.cyan  .info-box-body  { color:var(--text-dim); }
+.info-box.green { background:rgba(0,255,152,0.05); border:1px solid rgba(0,255,152,0.18); }
+.info-box.green .info-box-title { color:var(--short); }
+.info-box.green .info-box-body  { color:var(--text-dim); }
+.info-box.purple{ background:rgba(176,106,255,0.05); border:1px solid rgba(176,106,255,0.18); }
+.info-box.purple.info-box-title { color:var(--long); }
+.info-box.purple .info-box-body { color:var(--text-dim); }
+.info-box.gold  { background:rgba(255,214,0,0.05); border:1px solid rgba(255,214,0,0.18); }
+.info-box.gold  .info-box-title { color:var(--gold); }
+.info-box.gold  .info-box-body  { color:var(--text-dim); }
+.info-box.orange{ background:rgba(255,112,67,0.05); border:1px solid rgba(255,112,67,0.18); }
+.info-box.orange .info-box-title{ color:var(--xp); }
+.info-box.orange .info-box-body { color:var(--text-dim); }
+
+/* Step list */
+.steps { display:flex; flex-direction:column; gap:10px; margin:14px 0; }
+.step  { display:flex; gap:14px; align-items:flex-start; }
+.step-num {
+  font-family:'Orbitron',monospace; font-size:12px; font-weight:900;
+  min-width:28px; height:28px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:50%; flex-shrink:0;
+}
+.step-body { font-size:13px; color:var(--text-dim); line-height:1.7; padding-top:4px; }
+.step-body strong { color:var(--text); }
+
+/* Key facts row */
+.key-facts { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
+.key-fact { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px; text-align:center; }
+.key-fact-val { font-family:'Orbitron',monospace; font-size:20px; font-weight:700; margin-bottom:4px; }
+.key-fact-label { font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.14em; }
+
+/* Pro tip */
+.pro-tip {
+  display:flex; gap:12px; align-items:flex-start;
+  background:rgba(255,214,0,0.04); border:1px solid rgba(255,214,0,0.18);
+  border-radius:10px; padding:14px 16px; margin:16px 0;
+}
+.pro-tip-icon { font-size:18px; flex-shrink:0; }
+.pro-tip-body { font-size:13px; color:var(--text-dim); line-height:1.65; }
+.pro-tip-body strong { color:var(--gold); }
+
+/* Compare table */
+.compare-table { width:100%; border-collapse:collapse; margin:14px 0; font-size:13px; }
+.compare-table th { font-size:9px; text-transform:uppercase; letter-spacing:0.18em; color:var(--text-faint); padding:8px 10px; border-bottom:1px solid var(--border); text-align:left; font-weight:700; }
+.compare-table td { padding:10px 10px; border-bottom:1px solid var(--border); color:var(--text-dim); line-height:1.5; }
+.compare-table td:first-child { color:var(--text); font-weight:600; }
+.compare-table tr:last-child td { border-bottom:none; }
+
+/* ══ AD ══ */
+.ad-guide { width:100%; min-height:90px; background:rgba(0,212,255,0.02); border:1px dashed rgba(0,212,255,0.08); border-radius:var(--radius); margin:28px 0; overflow:hidden; }
+
+/* ══ NAVIGATOR ══ */
+.article-nav { display:flex; justify-content:space-between; align-items:center; margin-top:20px; padding-top:18px; border-top:1px solid var(--border); }
+.nav-link { font-size:12px; color:var(--text-dim); text-decoration:none; transition:color .2s; display:flex; align-items:center; gap:6px; }
+.nav-link:hover { color:var(--focus); }
+
+/* ══ FOOTER ══ */
+.page-footer { text-align:center; padding:32px 0 0; border-top:1px solid var(--border); margin-top:16px; }
+.page-footer-logo { font-family:'Orbitron',monospace; font-size:13px; font-weight:700; color:var(--focus); margin-bottom:6px; }
+.page-footer-sub  { font-size:11px; color:var(--text-faint); margin-bottom:14px; }
+.page-footer-links a { color:var(--text-faint); font-size:11px; text-decoration:none; margin:0 10px; transition:color .2s; }
+.page-footer-links a:hover { color:var(--text-dim); }
+
+/* ══ SCROLLBAR ══ */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width:640px) {
+  .page { padding:28px 16px 80px; }
+  .article { padding:22px 18px; }
+  .key-facts { grid-template-columns:1fr 1fr; }
+  .topbar-page, .topbar-badge { display:none; }
+}
+@media (max-width:400px) {
+  .key-facts { grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+<div class="bg-grid"></div>
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+
+<!-- ══ TOPBAR ══ -->
+<nav class="topbar">
+  <div class="topbar-left">
+    <a href="index.html" class="topbar-logo">🍅 POMODOROXP</a>
+    <span class="topbar-sep">/</span>
+    <span class="topbar-page">Guías de Estudio</span>
+  </div>
+  <div class="topbar-nav">
+    <span class="topbar-badge">📚 Guías</span>
+    <a href="toolkit.html" class="topbar-back">← Toolkit</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="page-hero-tag">📚 Recursos para estudiantes</div>
+    <h1 class="page-hero-title">Guías de Técnicas de Estudio</h1>
+    <p class="page-hero-sub">Cinco métodos probados científicamente para estudiar más en menos tiempo, retener más y llegar a los exámenes con confianza.</p>
+  </div>
+
+  <!-- AD -->
+  <div class="ad-guide">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9027862604686644" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <div class="toc-title">📋 Contenido de esta guía</div>
+    <ul class="toc-list">
+      <li>
+        <span class="toc-num">01</span>
+        <a href="#feynman">El Método Feynman: aprende explicando</a>
+        <span class="toc-tag article-cat neuroscience">Comprensión</span>
+      </li>
+      <li>
+        <span class="toc-num">02</span>
+        <a href="#repeticion">Repetición Espaciada: memoriza sin olvidar</a>
+        <span class="toc-tag article-cat memory">Memoria</span>
+      </li>
+      <li>
+        <span class="toc-num">03</span>
+        <a href="#cornell">Método Cornell: el sistema de apuntes definitivo</a>
+        <span class="toc-tag article-cat notetaking">Apuntes</span>
+      </li>
+      <li>
+        <span class="toc-num">04</span>
+        <a href="#active-recall">Active Recall: el secreto de los mejores estudiantes</a>
+        <span class="toc-tag article-cat technique">Técnica</span>
+      </li>
+      <li>
+        <span class="toc-num">05</span>
+        <a href="#chunking">Chunking: aprende conceptos complejos en trozos</a>
+        <span class="toc-tag article-cat psychology">Psicología</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       ARTÍCULO 1 — MÉTODO FEYNMAN
+  ══════════════════════════════════════════════ -->
+  <article class="article" id="feynman">
+    <div class="article-header">
+      <div class="article-meta">
+        <span class="article-num">01</span>
+        <span class="article-cat neuroscience">Comprensión profunda</span>
+        <span class="article-read-time">⏱ 5 min de lectura</span>
+      </div>
+      <h2 class="article-title">El Método Feynman: aprende cualquier cosa explicándola con palabras simples</h2>
+      <p class="article-intro">Richard Feynman, Premio Nobel de Física, tenía un principio que aplicaba a todo su trabajo: <strong>"Si no puedes explicarlo de forma sencilla, es que no lo entiendes bien."</strong> Este método convierte esa idea en un sistema de aprendizaje de 4 pasos que detecta exactamente qué partes de un tema no has comprendido realmente.</p>
+    </div>
+
+    <div class="article-body">
+
+      <div class="article-section-title" style="color:var(--focus)">🧠 ¿Por qué funciona?</div>
+      <p class="article-p">La mayoría de los estudiantes confunden el <strong>reconocimiento</strong> con la <strong>comprensión</strong>. Cuando lees los apuntes y piensas «esto lo entiendo», en realidad estás reconociendo información que ya viste antes. Pero el reconocimiento pasivo no es suficiente para un examen, donde tendrás que <em>recuperar</em> y <em>aplicar</em> la información sin el texto delante.</p>
+      <p class="article-p">El Método Feynman rompe con esta ilusión de comprensión obligándote a <strong>generar conocimiento activamente</strong>. Al intentar explicar algo con tus propias palabras, tu cerebro debe hacer conexiones entre conceptos, buscar analogías y detectar los eslabones de la cadena de razonamiento que te faltan.</p>
+
+      <div class="key-facts">
+        <div class="key-fact">
+          <div class="key-fact-val" style="color:var(--focus)">4</div>
+          <div class="key-fact-label">Pasos del método</div>
+        </div>
+        <div class="key-fact">
+          <div class="key-fact-val" style="color:var(--short)">+40%</div>
+          <div class="key-fact-label">Retención a largo plazo</div>
+        </div>
+        <div class="key-fact">
+          <div class="key-fact-val" style="color:var(--gold)">1965</div>
+          <div class="key-fact-label">Año del Nobel de Feynman</div>
+        </div>
+      </div>
+
+      <div class="article-section-title" style="color:var(--focus)">📋 Los 4 pasos del Método Feynman</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);color:var(--focus)">1</div>
+          <div class="step-body"><strong>Elige un concepto y estúdialo.</strong> Selecciona UN concepto concreto (no un tema entero). Léelo, estudia los apuntes, revisa el libro. Procura entenderlo lo mejor que puedas en esta primera pasada.</div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);color:var(--focus)">2</div>
+          <div class="step-body"><strong>Explícalo como si se lo contaras a un niño de 12 años.</strong> Cierra el libro y escribe (o di en voz alta) todo lo que sabes sobre ese concepto usando solo palabras simples, sin jerga técnica. Si necesitas términos técnicos, defínelos tú mismo. Esto es lo más importante del método.</div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);color:var(--focus)">3</div>
+          <div class="step-body"><strong>Identifica los huecos y vuelve a la fuente.</strong> Los puntos donde tu explicación se vuelve confusa, donde usas frases vacías o donde simplemente te quedas en blanco: esos son tus huecos de comprensión. Vuelve al libro o apuntes y estudia específicamente esas partes.</div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);color:var(--focus)">4</div>
+          <div class="step-body"><strong>Simplifica y usa analogías.</strong> Cuando puedas explicar el concepto sin lagunas, da un paso más: busca una analogía con algo cotidiano. Las analogías son la señal de que has comprendido profundamente algo, no solo memorizado.</div>
+        </div>
+      </div>
+
+      <div class="info-box cyan">
+        <div class="info-box-title">💡 Ejemplo práctico: la Ley de Ohm</div>
+        <div class="info-box-body">En vez de decir: <em>"La intensidad de corriente es directamente proporcional a la diferencia de potencial e inversamente proporcional a la resistencia"</em>, explícalo así: <em>"Imagina que la electricidad es agua en una tubería. La presión del agua es el voltaje, el grosor de la tubería es el inverso de la resistencia, y el caudal de agua que pasa es la intensidad. Más presión o menos resistencia = más caudal."</em></div>
+      </div>
+
+      <div class="article-section-title" style="color:var(--focus)">🎯 Cuándo usar el Método Feynman</div>
+      <p class="article-p">El Método Feynman es especialmente efectivo para <strong>conceptos abstractos o matemáticos</strong> que suelen memorizarse sin entenderse (leyes de la física, conceptos económicos, teoremas matemáticos, procesos biológicos). También es muy útil como <strong>diagnóstico previo al examen</strong>: si no puedes explicar un tema sin mirar los apuntes, no estás listo para el examen en ese tema.</p>
+
+      <div class="pro-tip">
+        <span class="pro-tip-icon">⚡</span>
+        <div class="pro-tip-body"><strong>Consejo PomodoroXP:</strong> Dedica un pomodoro completo (25 min) a estudiar el concepto y el siguiente pomodoro a aplicar el Método Feynman: cierra todo y explica en voz alta o por escrito lo que acabas de aprender. El descanso entre los dos pomodoros ayuda a la consolidación inicial.</div>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- AD -->
+  <div class="ad-guide">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9027862604686644" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       ARTÍCULO 2 — REPETICIÓN ESPACIADA
+  ══════════════════════════════════════════════ -->
+  <article class="article" id="repeticion">
+    <div class="article-header">
+      <div class="article-meta">
+        <span class="article-num">02</span>
+        <span class="article-cat memory">Memoria a largo plazo</span>
+        <span class="article-read-time">⏱ 6 min de lectura</span>
+      </div>
+      <h2 class="article-title">Repetición Espaciada: el método científico para no olvidar nunca lo que estudias</h2>
+      <p class="article-intro">La <strong>repetición espaciada</strong> (Spaced Repetition) es probablemente la técnica de memorización más validada científicamente que existe. Se basa en un hallazgo del psicólogo alemán Hermann Ebbinghaus de 1885: la memoria humana sigue una curva de olvido predecible, y revisar el material justo antes de olvidarlo es exponencialmente más eficiente que repasarlo varias veces seguidas.</p>
+    </div>
+
+    <div class="article-body">
+
+      <div class="article-section-title" style="color:var(--long)">📉 La Curva del Olvido de Ebbinghaus</div>
+      <p class="article-p">Ebbinghaus descubrió que olvidamos el <strong>50% de lo que aprendemos en las primeras 24 horas</strong>. Al cabo de una semana, recordamos menos del 25%. Sin repaso, al mes prácticamente todo ha desaparecido. Pero lo crucial es esto: cada vez que repasamos algo <em>en el momento justo antes de olvidarlo</em>, la nueva curva de olvido es más lenta. Con suficientes repasos bien espaciados, el recuerdo puede volverse prácticamente permanente.</p>
+
+      <div class="info-box purple" style="background:rgba(176,106,255,0.05);border-color:rgba(176,106,255,0.2)">
+        <div class="info-box-title" style="color:var(--long)">📊 La curva de olvido en números</div>
+        <div class="info-box-body" style="color:var(--text-dim)">
+          Tras estudiar algo una vez:<br>
+          · Después de <strong style="color:var(--text)">20 minutos</strong>: recuerdas el 58%<br>
+          · Después de <strong style="color:var(--text)">1 hora</strong>: recuerdas el 44%<br>
+          · Después de <strong style="color:var(--text)">1 día</strong>: recuerdas el 33%<br>
+          · Después de <strong style="color:var(--text)">1 semana</strong>: recuerdas el 25%<br>
+          · Después de <strong style="color:var(--text)">1 mes</strong>: recuerdas el 21%
+        </div>
+      </div>
+
+      <div class="article-section-title" style="color:var(--long)">⏰ El Intervalo de Repetición Óptimo</div>
+      <p class="article-p">La clave de la repetición espaciada es estudiar el material en intervalos que se van ampliando progresivamente. Un calendario típico para memorizar algo a largo plazo sería:</p>
+
+      <table class="compare-table">
+        <tr><th>Repaso</th><th>Cuándo hacerlo</th><th>Duración sugerida</th></tr>
+        <tr><td>1.º repaso</td><td>El mismo día que lo estudias</td><td>10–15 min</td></tr>
+        <tr><td>2.º repaso</td><td>Al día siguiente</td><td>5–10 min</td></tr>
+        <tr><td>3.º repaso</td><td>3 días después</td><td>5 min</td></tr>
+        <tr><td>4.º repaso</td><td>1 semana después</td><td>5 min</td></tr>
+        <tr><td>5.º repaso</td><td>2 semanas después</td><td>5 min</td></tr>
+        <tr><td>6.º repaso</td><td>1 mes después</td><td>5 min</td></tr>
+      </table>
+
+      <div class="article-section-title" style="color:var(--long)">🃏 Flashcards y Anki: la herramienta perfecta</div>
+      <p class="article-p">La repetición espaciada es la base de <strong>Anki</strong>, la aplicación de flashcards más usada en el mundo. Anki calcula automáticamente cuándo debes repasar cada tarjeta usando el algoritmo SM-2, que ajusta los intervalos según si respondiste bien o mal. Para vocabulario de idiomas, fórmulas matemáticas, conceptos de medicina o derecho, Anki es absolutamente imbatible.</p>
+      <p class="article-p">Si prefieres no usar software, puedes implementar la repetición espaciada manualmente con el <strong>sistema Leitner</strong>: divide tus flashcards físicas en 5 cajas con intervalos de repaso diferentes (1 día, 2 días, 4 días, 8 días, 16 días). Cuando aciertas una tarjeta, la mueves a la siguiente caja; cuando fallas, vuelve a la primera.</p>
+
+      <div class="pro-tip">
+        <span class="pro-tip-icon">⚡</span>
+        <div class="pro-tip-body"><strong>Consejo PomodoroXP:</strong> Integra la repetición espaciada en tu rutina diaria usando el sistema de Misiones. Crea una misión llamada "Anki - Repaso diario" con una estimación de 1 pomodoro. Hacerlo todos los días a la misma hora es lo que activa la racha y el sistema de XP, creando el hábito.</div>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ══════════════════════════════════════════════
+       ARTÍCULO 3 — MÉTODO CORNELL
+  ══════════════════════════════════════════════ -->
+  <article class="article" id="cornell">
+    <div class="article-header">
+      <div class="article-meta">
+        <span class="article-num">03</span>
+        <span class="article-cat notetaking">Sistema de apuntes</span>
+        <span class="article-read-time">⏱ 5 min de lectura</span>
+      </div>
+      <h2 class="article-title">El Método Cornell: cómo tomar apuntes que realmente sirven para estudiar</h2>
+      <p class="article-intro">Desarrollado en la Universidad Cornell en los años 50 por el profesor Walter Pauk, el <strong>Sistema Cornell</strong> es el método de toma de apuntes más enseñado en universidades del mundo anglosajón. La diferencia con tomar apuntes normales es que Cornell <em>obliga</em> a procesar activamente la información mientras escribes y después.</p>
+    </div>
+
+    <div class="article-body">
+
+      <div class="article-section-title" style="color:var(--short)">📄 La estructura de un folio Cornell</div>
+      <p class="article-p">Un folio Cornell se divide en tres secciones bien delimitadas:</p>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;margin:14px 0;font-size:13px">
+        <div style="display:grid;grid-template-columns:1fr 2.5fr;grid-template-rows:auto auto;gap:0;border:1px solid rgba(0,255,152,0.3);border-radius:8px;overflow:hidden">
+          <div style="background:rgba(0,255,152,0.05);border-right:1px solid rgba(0,255,152,0.2);border-bottom:1px solid rgba(0,255,152,0.2);padding:12px;color:var(--short);font-weight:700">
+            ← COLUMNA DE PREGUNTAS / CLAVES (~6cm)
+          </div>
+          <div style="background:rgba(0,255,152,0.03);border-bottom:1px solid rgba(0,255,152,0.2);padding:12px;color:var(--text-dim)">
+            ÁREA DE APUNTES (~14cm) — Aquí escribes durante la clase o mientras estudias. Frases cortas, no copias literales. Diagramas, flechas, abreviaturas.
+          </div>
+          <div style="grid-column:1/-1;background:rgba(0,255,152,0.06);padding:12px;color:var(--short)">
+            RESUMEN (5-7 líneas al pie) — Lo rellenas DESPUÉS de clase: 2-3 frases que sintetizan la idea principal de toda la página.
+          </div>
+        </div>
+      </div>
+
+      <div class="article-section-title" style="color:var(--short)">✅ Los 5 pasos del Sistema Cornell (las 5 R)</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" style="background:rgba(0,255,152,0.1);border:1px solid rgba(0,255,152,0.3);color:var(--short)">R</div>
+          <div class="step-body"><strong>Record (Registrar):</strong> Durante la clase, apunta los hechos y conceptos importantes en el área de apuntes (columna derecha). No lo copies todo — filtra lo importante.</div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:rgba(0,255,152,0.1);border:1px solid rgba(0,255,152,0.3);color:var(--short)">R</div>
+          <div class="step-body"><strong>Reduce (Reducir):</strong> Tan pronto como puedas (preferiblemente el mismo día), en la columna izquierda escribe preguntas o palabras clave que resumirían los apuntes de la derecha. Esto te fuerza a procesar la información.</div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:rgba(0,255,152,0.1);border:1px solid rgba(0,255,152,0.3);color:var(--short)">R</div>
+          <div class="step-body"><strong>Recite (Recitar):</strong> Tapa la columna de apuntes y, mirando solo las preguntas/claves de la izquierda, intenta recordar los apuntes. Esto es Active Recall aplicado directamente a tus apuntes.</div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:rgba(0,255,152,0.1);border:1px solid rgba(0,255,152,0.3);color:var(--short)">R</div>
+          <div class="step-body"><strong>Reflect (Reflexionar):</strong> Pregúntate cómo se relaciona esto con lo que ya sabes, qué implicaciones tiene, qué no entiendes todavía. Esta metacognición es lo que convierte la información en conocimiento real.</div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:rgba(0,255,152,0.1);border:1px solid rgba(0,255,152,0.3);color:var(--short)">R</div>
+          <div class="step-body"><strong>Review (Repasar):</strong> Una vez a la semana, dedica 10 minutos a repasar tus apuntes Cornell. Los resúmenes del pie de página te permiten hacer un repaso rápido de decenas de folios en pocos minutos.</div>
+        </div>
+      </div>
+
+      <div class="info-box green">
+        <div class="info-box-title">✅ Ventajas del Método Cornell sobre los apuntes normales</div>
+        <div class="info-box-body">Los apuntes normales generan <em>comprensión ilusoria</em>: cuando los relees, todo te parece familiar porque ya lo viste. Cornell te fuerza a testarte activamente (paso Recitar) cada vez que los repasas, lo que es entre 2 y 5 veces más efectivo que releer.</div>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- AD -->
+  <div class="ad-guide">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9027862604686644" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       ARTÍCULO 4 — ACTIVE RECALL
+  ══════════════════════════════════════════════ -->
+  <article class="article" id="active-recall">
+    <div class="article-header">
+      <div class="article-meta">
+        <span class="article-num">04</span>
+        <span class="article-cat technique">Alta eficiencia</span>
+        <span class="article-read-time">⏱ 5 min de lectura</span>
+      </div>
+      <h2 class="article-title">Active Recall: por qué testarte a ti mismo es mejor que releer los apuntes</h2>
+      <p class="article-intro">Si tuvieras que elegir solo una técnica de estudio basada en la evidencia científica, debería ser el <strong>Active Recall</strong> (también llamado <em>retrieval practice</em> o práctica de recuperación). Múltiples metaanálisis con cientos de miles de estudiantes confirman que intentar recordar información activamente es entre 2 y 5 veces más efectivo para la memoria a largo plazo que estudiar el mismo material el doble de tiempo.</p>
+    </div>
+
+    <div class="article-body">
+
+      <div class="article-section-title" style="color:var(--gold)">🔬 La ciencia: el efecto de testado</div>
+      <p class="article-p">El <strong>testing effect</strong> (efecto de testado) fue documentado por primera vez en 1620 por Francis Bacon, pero fue el psicólogo Jeffrey Karpicke quien lo popularizó en 2011 con un estudio histórico publicado en <em>Science</em>. En él, demostró que los estudiantes que se <em>autotesteaban</em> tras leer un texto recordaban el <strong>50% más de información</strong> una semana después que los que simplemente releían el mismo texto varias veces.</p>
+      <p class="article-p">¿Por qué funciona? Cada vez que intentas recuperar algo de tu memoria y lo consigues, ese recuerdo se <strong>consolida y fortalece</strong>. El esfuerzo del intento de recuperación es precisamente lo que hace que el recuerdo sea más resistente al olvido. La dificultad deseable (desirable difficulty) es el principio psicológico detrás de esto: aprender con un poco de esfuerzo es más efectivo que aprender con facilidad.</p>
+
+      <div class="key-facts">
+        <div class="key-fact">
+          <div class="key-fact-val" style="color:var(--gold)">+50%</div>
+          <div class="key-fact-label">Mejor retención vs releer</div>
+        </div>
+        <div class="key-fact">
+          <div class="key-fact-val" style="color:var(--gold)">2–5×</div>
+          <div class="key-fact-label">Más eficiente por hora</div>
+        </div>
+        <div class="key-fact">
+          <div class="key-fact-val" style="color:var(--gold)">2011</div>
+          <div class="key-fact-label">Estudio Karpicke en Science</div>
+        </div>
+      </div>
+
+      <div class="article-section-title" style="color:var(--gold)">🛠 Cómo aplicar el Active Recall en la práctica</div>
+      <table class="compare-table">
+        <tr><th>Técnica</th><th>Cómo hacerlo</th><th>Ideal para</th></tr>
+        <tr><td>Flashcards</td><td>Carta con pregunta por delante, respuesta por detrás. Intenta responder antes de darla la vuelta.</td><td>Vocabulario, definiciones, fórmulas</td></tr>
+        <tr><td>Brain dump</td><td>Cierra todo y escribe durante 10 min TODO lo que recuerdes de un tema.</td><td>Antes de empezar a estudiar un tema</td></tr>
+        <tr><td>Preguntas del libro</td><td>Haz los ejercicios del libro SIN mirar la solución primero.</td><td>Matemáticas, física, química</td></tr>
+        <tr><td>Explicar en voz alta</td><td>Cierra el libro y explica el tema como si estuvieras en el examen.</td><td>Ciencias sociales, historia, derecho</td></tr>
+        <tr><td>Exámenes pasados</td><td>Resuelve exámenes de años anteriores en condiciones reales.</td><td>Preparación de exámenes</td></tr>
+      </table>
+
+      <div class="info-box gold">
+        <div class="info-box-title">⚠️ El error más común: releer en lugar de testearse</div>
+        <div class="info-box-body">Releer apuntes produce una sensación de familiaridad que el cerebro interpreta erróneamente como comprensión. Es una trampa cognitiva. Si después de releer algo sientes que "ya lo sabes", prueba a cerrarlo e intentar explicarlo desde cero — descubrirás cuánto realmente recuerdas.</div>
+      </div>
+
+      <div class="pro-tip">
+        <span class="pro-tip-icon">⚡</span>
+        <div class="pro-tip-body"><strong>Consejo PomodoroXP:</strong> Aplica la regla 70/30: dedica el 70% de tu tiempo de estudio a Active Recall (flashcards, preguntas, explicar en voz alta) y solo el 30% a leer o repasar pasivamente. Usa los pomodoros para estructurar esto: 1 pomodoro de lectura, 2 pomodoros de testado.</div>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ══════════════════════════════════════════════
+       ARTÍCULO 5 — CHUNKING
+  ══════════════════════════════════════════════ -->
+  <article class="article" id="chunking">
+    <div class="article-header">
+      <div class="article-meta">
+        <span class="article-num">05</span>
+        <span class="article-cat psychology">Psicología cognitiva</span>
+        <span class="article-read-time">⏱ 4 min de lectura</span>
+      </div>
+      <h2 class="article-title">Chunking: cómo aprender conceptos complejos dividiéndolos en trozos manejables</h2>
+      <p class="article-intro">El <strong>chunking</strong> (del inglés <em>chunk</em>, «trozo») es una técnica cognitiva que consiste en agrupar piezas de información en unidades más grandes y manejables. Es el principio detrás de cómo los expertos procesan información compleja con aparente facilidad: no la memorizan elemento a elemento, sino en bloques integrados de conocimiento.</p>
+    </div>
+
+    <div class="article-body">
+
+      <div class="article-section-title" style="color:var(--xp)">🧩 Cómo funciona el Chunking en el cerebro</div>
+      <p class="article-p">La memoria de trabajo humana tiene una capacidad muy limitada: según el psicólogo George Miller, podemos mantener activos entre <strong>5 y 9 elementos</strong> simultáneamente (el famoso "7 ± 2"). Sin embargo, el tamaño de cada elemento es flexible: un "trozo" (chunk) puede ser tan pequeño como un número o tan grande como una melodía entera o una jugada de ajedrez.</p>
+      <p class="article-p">Un músico experto no memoriza nota a nota — memoriza acordes, progresiones y frases musicales. Un jugador de ajedrez experto no ve 64 casillas — ve patrones de posición reconocibles. El chunking te permite comprimir información compleja en unidades que tu memoria de trabajo puede manejar con facilidad.</p>
+
+      <div class="info-box orange">
+        <div class="info-box-title">💡 Ejemplo: aprender un número de teléfono</div>
+        <div class="info-box-body">
+          Sin chunking: 6-5-4-3-2-1-0-9-8 (9 elementos individuales, al límite de la memoria de trabajo)<br><br>
+          Con chunking: 654 · 321 · 098 (3 elementos agrupados, mucho más fácil de recordar)<br><br>
+          Este principio funciona igual con fórmulas matemáticas, pasos de un algoritmo, vocabulario de idiomas o los pasos de un proceso químico.
+        </div>
+      </div>
+
+      <div class="article-section-title" style="color:var(--xp)">🛠 Cómo aplicar Chunking al estudio</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" style="background:rgba(255,112,67,0.1);border:1px solid rgba(255,112,67,0.3);color:var(--xp)">1</div>
+          <div class="step-body"><strong>Identifica las unidades mínimas.</strong> Antes de agrupar, identifica cuáles son las piezas de información básicas de un tema: conceptos clave, pasos de un proceso, definiciones, variables de una fórmula.</div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:rgba(255,112,67,0.1);border:1px solid rgba(255,112,67,0.3);color:var(--xp)">2</div>
+          <div class="step-body"><strong>Busca el patrón o la relación.</strong> Agrupa las unidades que comparten una relación lógica: causa-efecto, secuencia temporal, misma categoría, misma fórmula base. El chunk es más fácil de recordar si tiene un significado interno claro.</div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:rgba(255,112,67,0.1);border:1px solid rgba(255,112,67,0.3);color:var(--xp)">3</div>
+          <div class="step-body"><strong>Crea una etiqueta o nemotecnia para el chunk.</strong> Dale un nombre al grupo (ej: "las 3 leyes de Newton") o usa un acrónimo. Esta etiqueta es la "puerta de entrada" al chunk entero en tu memoria.</div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:rgba(255,112,67,0.1);border:1px solid rgba(255,112,67,0.3);color:var(--xp)">4</div>
+          <div class="step-body"><strong>Practica el chunk hasta automatizarlo.</strong> El objetivo es que el chunk sea recuperable de forma automática sin esfuerzo consciente. Esto se logra con repetición espaciada y Active Recall hasta que la información fluya de forma natural.</div>
+        </div>
+      </div>
+
+      <div class="article-section-title" style="color:var(--xp)">🗺 Mapas mentales: chunking visual</div>
+      <p class="article-p">Los <strong>mapas mentales</strong> son la aplicación visual del chunking. Al organizar la información jerárquicamente alrededor de un concepto central, creas chunks visuales que el cerebro puede procesar y recordar mucho más fácilmente que una lista lineal. Herramientas como Miro, MindMeister o simplemente papel y lápiz son perfectas para esto.</p>
+
+      <div class="pro-tip">
+        <span class="pro-tip-icon">⚡</span>
+        <div class="pro-tip-body"><strong>Consejo PomodoroXP:</strong> Usa los primeros 5 minutos del descanso largo (15 min) para hacer un mapa mental rápido de lo que acabas de estudiar en los últimos 4 pomodoros. Este ejercicio de chunking refuerza la estructura del conocimiento y hace que el siguiente ciclo de estudio sea más eficiente.</div>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- AD FINAL -->
+  <div class="ad-guide">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9027862604686644" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="page-footer">
+    <div class="page-footer-logo">🍅 PomodoroXP</div>
+    <div class="page-footer-sub">Guías de estudio para estudiantes · Motor de Estudio v2.0</div>
+    <div class="page-footer-links">
+      <a href="index.html">⏱ Timer</a>
+      <a href="toolkit.html">🧰 Toolkit</a>
+      <a href="privacy.html">Privacidad</a>
+      <a href="cookies.html">Cookies</a>
+    </div>
+  </div>
+
+</div><!-- /.page -->
+
+</body>
+</html>
