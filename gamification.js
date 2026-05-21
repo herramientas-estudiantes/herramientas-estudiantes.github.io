@@ -1,12 +1,18 @@
 // Gamification Engine V3
 // Encargado de la UI de la Mascota, Tienda, Árbol de Habilidades y Ligas Simuladas
 
-window.addEventListener('DOMContentLoaded', () => {
+function initGamification() {
     injectModals();
     setupGamificationEvents();
     updatePetUI();
     generateLeagueBots();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGamification);
+} else {
+    initGamification();
+}
 
 // ==========================================
 // INYECCIÓN DE HTML (Modales)
