@@ -297,11 +297,88 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
   </div>
 
   <!-- SEO TEXT -->
+
+  <!-- SECCIÓN 1: ¿Qué es la estadística? -->
   <div class="seo-card">
-    <div class="seo-tag">📐 ¿Qué es la desviación típica y para qué sirve?</div>
-    <p class="seo-p">La <strong>desviación típica</strong> (o desviación estándar, σ) es una de las medidas de dispersión más importantes en estadística. Cuantifica cuánto se alejan, en promedio, los valores de un conjunto de datos respecto a su media. Un valor de σ bajo indica que los datos están muy agrupados alrededor de la media; un valor alto indica que están muy dispersos.</p>
-    <p class="seo-p">La fórmula es <strong>σ = √(Σ(xᵢ − x̄)² / N)</strong>, donde xᵢ es cada valor, x̄ es la media y N es el número total de datos. Esta herramienta calcula la <strong>desviación típica poblacional</strong> (divide entre N) y no la muestral (que dividiría entre N−1). Usa la variante N−1 cuando tus datos son una muestra de una población mayor, algo habitual en investigaciones académicas.</p>
-    <p class="seo-p">En el ámbito académico y científico, la desviación típica aparece constantemente: en experimentos de laboratorio para medir la <strong>precisión de las mediciones</strong>, en psicología para interpretar tests estandarizados (muchos tests tienen media 100 y σ = 15), en economía para medir el <strong>riesgo de una inversión</strong>, y en cualquier análisis donde necesites describir no solo el centro de tus datos sino también su variabilidad. Combinada con la media, forma la base de la distribución normal (campana de Gauss), que es el modelo probabilístico más utilizado en ciencia.</p>
+    <div class="seo-tag">📊 ¿Qué es la estadística y para qué sirve?</div>
+    <p class="seo-p">La <strong>estadística</strong> es la ciencia matemática que se encarga de recopilar, organizar, analizar, interpretar y presentar datos. Es una herramienta fundamental en prácticamente todas las disciplinas del conocimiento: desde la medicina hasta la economía, pasando por la psicología, la ingeniería y las ciencias sociales.</p>
+    <p class="seo-p">Se divide en dos grandes ramas. La <strong>estadística descriptiva</strong> resume y describe los datos de un conjunto sin ir más allá: calcula la media, la moda, la mediana, la desviación típica y construye tablas y gráficos. La <strong>estadística inferencial</strong>, en cambio, extrae conclusiones sobre una población completa a partir de una muestra, usando herramientas como contrastes de hipótesis, intervalos de confianza y regresiones.</p>
+    <p class="seo-p">Las aplicaciones son enormes: en <strong>medicina</strong> se usan ensayos clínicos controlados para evaluar la eficacia de fármacos; en <strong>economía</strong> se analizan series temporales para predecir mercados; en <strong>psicología</strong> se validan tests con análisis factorial; en <strong>control de calidad industrial</strong> se detectan defectos con gráficos de control; en <strong>deportes</strong> se optimizan estrategias con analítica de rendimiento. Si estudias cualquier carrera universitaria con componente cuantitativo, dominar la estadística básica es imprescindible.</p>
+  </div>
+
+  <!-- SECCIÓN 2: Medidas de tendencia central -->
+  <div class="seo-card">
+    <div class="seo-tag">📐 Medidas de tendencia central</div>
+    <p class="seo-p">Las <strong>medidas de tendencia central</strong> indican el valor "típico" o representativo de un conjunto de datos. Las tres principales son la media, la mediana y la moda, y cada una tiene sus ventajas según el tipo de datos.</p>
+    <p class="seo-p"><strong>Media aritmética (x̄):</strong> es la suma de todos los valores dividida entre el número total de datos. Es la medida más utilizada, pero es sensible a valores extremos (outliers). Si un dato es muy diferente al resto, puede distorsionar la media significativamente.</p>
+    <div style="background:rgba(0,255,152,0.06);border:1px solid rgba(0,255,152,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:12px;color:var(--short);line-height:1.8">
+      x̄ = Σxᵢ / n &nbsp;|&nbsp; Suma de todos los valores dividida entre n
+    </div>
+    <p class="seo-p"><strong>Mediana:</strong> es el valor central cuando los datos están ordenados de menor a mayor. Si el número de datos es par, se promedia los dos valores centrales. La mediana no se ve afectada por outliers, por lo que es preferible para datos sesgados como salarios o precios de vivienda.</p>
+    <p class="seo-p"><strong>Moda:</strong> es el valor que aparece con mayor frecuencia. Un conjunto puede no tener moda (si todos los valores son únicos), tener una sola (unimodal) o varias (bimodal, multimodal). Es especialmente útil en datos categóricos.</p>
+    <p class="seo-p">Ejemplo con el conjunto {2, 4, 4, 6, 8, 10}: la <strong>media = 5.67</strong>, la <strong>mediana = 5</strong> (promedio de 4 y 6, los dos centrales) y la <strong>moda = 4</strong> (aparece dos veces).</p>
+  </div>
+
+  <!-- SECCIÓN 3: Medidas de dispersión -->
+  <div class="seo-card">
+    <div class="seo-tag">📏 Medidas de dispersión</div>
+    <p class="seo-p">Las <strong>medidas de dispersión</strong> indican cuán extendidos o concentrados están los datos alrededor de la tendencia central. Dos conjuntos de datos pueden tener la misma media pero distribuciones completamente distintas.</p>
+    <p class="seo-p"><strong>Rango:</strong> diferencia entre el máximo y el mínimo. Es el más simple, pero ignora la distribución interna de los datos.</p>
+    <p class="seo-p"><strong>Varianza (σ²):</strong> promedio de los cuadrados de las desviaciones respecto a la media. Se usa el cuadrado para evitar que las desviaciones positivas y negativas se anulen.</p>
+    <div style="background:rgba(0,255,152,0.06);border:1px solid rgba(0,255,152,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:12px;color:var(--short);line-height:1.8">
+      σ² = Σ(xᵢ − x̄)² / n &nbsp;(poblacional) &nbsp;|&nbsp; s² = Σ(xᵢ − x̄)² / (n−1) &nbsp;(muestral)
+    </div>
+    <p class="seo-p"><strong>Desviación típica (σ):</strong> raíz cuadrada de la varianza. Al estar en las mismas unidades que los datos originales, es mucho más interpretable. Un σ pequeño indica datos muy agrupados; un σ grande, mucha variabilidad.</p>
+    <p class="seo-p"><strong>Coeficiente de variación (CV):</strong> expresa la desviación típica como porcentaje de la media. Permite comparar la dispersión de conjuntos con distintas unidades o escalas. Si la media es 50 y σ = 10, entonces CV = 20%, lo que indica una variabilidad moderada.</p>
+    <div style="background:rgba(0,255,152,0.06);border:1px solid rgba(0,255,152,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:12px;color:var(--short);line-height:1.8">
+      CV = (σ / x̄) × 100%
+    </div>
+    <p class="seo-p">La corrección de Bessel (dividir entre n−1 en la varianza muestral) compensa el hecho de que una muestra tiende a subestimar la varianza real de la población. Esta calculadora usa la varianza poblacional (divide entre n).</p>
+  </div>
+
+  <!-- SECCIÓN 4: Histogramas -->
+  <div class="seo-card">
+    <div class="seo-tag">📈 Histogramas y visualización de datos</div>
+    <p class="seo-p">Un <strong>histograma</strong> es una representación gráfica de la distribución de frecuencias de un conjunto de datos numéricos. A diferencia de un diagrama de barras, las barras son adyacentes (sin espacio entre ellas), lo que refleja la continuidad de los datos.</p>
+    <p class="seo-p">Para leer un histograma correctamente, ten en cuenta: la <strong>altura de cada barra</strong> representa la frecuencia absoluta o relativa de ese intervalo; la <strong>anchura de las barras</strong> corresponde al intervalo de clase; y la <strong>forma general</strong> revela la distribución.</p>
+    <p class="seo-p">Una distribución <strong>simétrica</strong> tiene forma de campana, con la media, la mediana y la moda prácticamente coincidentes en el centro. Una distribución <strong>sesgada a la derecha</strong> (cola larga hacia la derecha) indica que media &gt; mediana &gt; moda, típico en datos de ingresos. Una distribución <strong>sesgada a la izquierda</strong> presenta media &lt; mediana &lt; moda, con la cola larga hacia la izquierda. Detectar <strong>clusters</strong> (agrupaciones), <strong>gaps</strong> (huecos) y <strong>outliers</strong> (barras aisladas) es clave para interpretar los datos correctamente.</p>
+  </div>
+
+  <!-- SECCIÓN 5: Distribución normal -->
+  <div class="seo-card">
+    <div class="seo-tag">🔔 La distribución normal y la regla empírica</div>
+    <p class="seo-p">La <strong>distribución normal</strong> (o campana de Gauss) es la distribución de probabilidad más importante en estadística. Tiene forma de campana, es perfectamente simétrica respecto a su media (μ) y su dispersión queda definida por la desviación típica (σ). Aparece de forma natural en fenómenos como la estatura humana, los errores de medición o las notas de un examen con muchos estudiantes.</p>
+    <p class="seo-p">La <strong>regla empírica</strong> (o regla 68-95-99.7) establece que, en una distribución normal:</p>
+    <div style="background:rgba(0,255,152,0.06);border:1px solid rgba(0,255,152,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:12px;color:var(--short);line-height:1.8">
+      68% de los datos → dentro de μ ± 1σ<br>
+      95% de los datos → dentro de μ ± 2σ<br>
+      99.7% de los datos → dentro de μ ± 3σ
+    </div>
+    <p class="seo-p">El <strong>z-score</strong> (o puntuación tipificada) transforma cualquier valor al número de desviaciones típicas que se aleja de la media, permitiendo comparar datos de distintas escalas: <strong>z = (x − μ) / σ</strong>. Por el <strong>Teorema Central del Límite</strong>, la media de cualquier muestra suficientemente grande tiende a distribuirse normalmente, independientemente de la distribución original, lo que hace que la distribución normal sea aplicable en casi cualquier contexto estadístico.</p>
+  </div>
+
+  <!-- SECCIÓN 6: Cómo usar la calculadora -->
+  <div class="seo-card">
+    <div class="seo-tag">🚀 Cómo usar esta calculadora paso a paso</div>
+    <p class="seo-p">Esta herramienta está diseñada para que cualquier estudiante pueda obtener estadísticos descriptivos completos en segundos, sin instalar ningún programa. Sigue estos pasos:</p>
+    <p class="seo-p"><strong>Paso 1 —</strong> Introduce tus números en el área de texto. Puedes separarlos por comas, espacios o saltos de línea. Todos los formatos son válidos.</p>
+    <p class="seo-p"><strong>Paso 2 —</strong> Puedes pegar datos directamente desde Excel, Google Sheets o cualquier hoja de cálculo. Copia una columna entera y pégala aquí; la calculadora los interpretará automáticamente.</p>
+    <p class="seo-p"><strong>Paso 3 —</strong> Los resultados se actualizan en tiempo real: media, mediana, moda, varianza, desviación típica, mínimo, máximo y rango aparecen al instante en las tarjetas de estadísticos.</p>
+    <p class="seo-p"><strong>Paso 4 —</strong> Revisa el <strong>histograma visual</strong> que se genera automáticamente. Las barras doradas indican la(s) moda(s). Si hay más de 25 valores únicos, los datos se agrupan en intervalos para una visualización más clara.</p>
+    <p class="seo-p"><strong>Paso 5 —</strong> Consulta la <strong>tabla de frecuencias</strong> detallada con frecuencias absolutas, relativas y acumuladas. Analiza si tu distribución es simétrica o sesgada comparando media, mediana y moda.</p>
+  </div>
+
+  <!-- SECCIÓN 7: FAQ -->
+  <div class="seo-card">
+    <div class="seo-tag">❓ Preguntas frecuentes</div>
+    <p class="seo-p"><strong>¿Cuál es la diferencia entre varianza poblacional y muestral?</strong><br>
+    La varianza poblacional divide entre <em>n</em> (el total de datos), mientras que la muestral divide entre <em>n−1</em> (corrección de Bessel). Usa la fórmula muestral cuando tus datos son una muestra extraída de una población mayor, lo que es habitual en estudios académicos e investigaciones científicas. Esta calculadora usa la varianza poblacional.</p>
+    <p class="seo-p"><strong>¿Cuándo debo usar la mediana en vez de la media?</strong><br>
+    Usa la mediana cuando tus datos contienen <strong>outliers</strong> o presentan una distribución muy sesgada. Por ejemplo, al analizar salarios o precios de vivienda, unos pocos valores muy altos elevan la media artificialmente, mientras que la mediana refleja mejor el valor central "típico" de la distribución.</p>
+    <p class="seo-p"><strong>¿Qué es un outlier y cómo afecta a los resultados?</strong><br>
+    Un outlier es un valor extremo que se aleja significativamente del resto del conjunto de datos. Distorsiona la media y la varianza, pudiendo dar una imagen errónea de la distribución. Detectarlos es crucial antes de cualquier análisis: una forma sencilla es buscar valores a más de 3σ de la media o usar el rango intercuartílico (IQR).</p>
+    <p class="seo-p"><strong>¿Puedo usar esta calculadora para datos de mi empresa o universidad?</strong><br>
+    Sí. Basta con pegar tus datos separados por comas o saltos de línea directamente desde tu hoja de cálculo. La herramienta funciona íntegramente en el navegador: ningún dato se envía a ningún servidor, por lo que es completamente segura para datos confidenciales o académicos.</p>
   </div>
 
   <div style="text-align:center;padding:24px 0 0;border-top:1px solid var(--border)">
