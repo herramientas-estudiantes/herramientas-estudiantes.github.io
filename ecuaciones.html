@@ -350,15 +350,102 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 
   <!-- SEO TEXT -->
   <div class="seo-card">
-    <div class="seo-tag">📐 Métodos numéricos y algebraicos</div>
-    <p class="seo-p">Este resolvedor combina métodos <strong>analíticos</strong> (Regla de Cramer para sistemas lineales, fórmula cuadrática, método de Cardano para cúbicas) con métodos <strong>numéricos</strong> (Newton-Raphson y Bisección) para cubrir prácticamente cualquier tipo de ecuación que puedas encontrar en tus estudios de matemáticas, física o ingeniería.</p>
-    <p class="seo-p">La <strong>Regla de Cramer</strong> resuelve sistemas de ecuaciones lineales calculando el determinante principal y los determinantes de las matrices sustituidas. Es el método estándar en álgebra lineal para sistemas de hasta 3×3. Para grado 2, se aplica la <strong>fórmula cuadrática general</strong> (discriminante), que distingue entre raíces reales, dobles o complejas. Para grado 3 y 4 se usa el <strong>método de Durand-Kerner</strong>, que converge numéricamente a todas las raíces simultáneamente.</p>
-    <p class="seo-p">El <strong>método de Newton-Raphson</strong> es uno de los algoritmos de búsqueda de raíces más rápidos que existen: dado un valor inicial x₀, calcula iterativamente x₁ = x₀ − f(x₀)/f′(x₀) hasta converger. Como complemento, el <strong>método de Bisección</strong> garantiza encontrar una raíz en cualquier intervalo [a,b] donde f(a) y f(b) tienen signos opuestos, siendo más lento pero siempre convergente.</p>
+
+    <!-- 1. Clasificación de ecuaciones -->
+    <div class="seo-tag">📐 ¿Qué es una ecuación y cómo se clasifica?</div>
+    <p class="seo-p">Una <strong>ecuación matemática</strong> es una igualdad entre dos expresiones que contiene una o más incógnitas. Resolver una ecuación significa encontrar el valor (o valores) de esas incógnitas que hacen verdadera la igualdad. En matemáticas, física e ingeniería encontrarás distintos tipos, y elegir el método correcto marca la diferencia entre una solución exacta en segundos y un cálculo que no converge:</p>
+    <div style="background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:12px;color:var(--focus);line-height:1.8">
+      LINEALES &nbsp;&nbsp;&nbsp;&nbsp;→ ax + b = 0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ siempre 1 solución real: x = −b/a<br>
+      CUADRÁTICAS →  ax² + bx + c = 0 &nbsp;&nbsp;&nbsp;→ hasta 2 soluciones (reales o complejas)<br>
+      CÚBICAS/CUÁRTICAS → grado 3 ó 4 &nbsp;&nbsp;&nbsp;&nbsp;→ resolución numérica o analítica<br>
+      TRASCENDENTES → sin, cos, ln, exp → solo resolución numérica<br>
+      SISTEMAS LINEALES → varias ecuaciones, varias incógnitas
+    </div>
+    <p class="seo-p">La herramienta de arriba cubre todos estos casos: usa la pestaña <strong>Sistemas Lineales</strong> para sistemas 2×2 y 3×3, <strong>Polinómica</strong> para ecuaciones de grado 2 a 4, y <strong>Ecuación Libre</strong> para cualquier expresión con sin, cos, ln, exp y más.</p>
+
+    <!-- 2. Regla de Cramer -->
+    <div class="seo-tag" style="margin-top:22px">🔢 La Regla de Cramer: cómo resolver sistemas de ecuaciones</div>
+    <p class="seo-p">La <strong>Regla de Cramer</strong> es el método algebraico estándar para resolver sistemas de ecuaciones lineales cuando el número de ecuaciones iguala al número de incógnitas. El procedimiento es el siguiente:</p>
+    <p class="seo-p" style="padding-left:12px;border-left:2px solid rgba(0,212,255,0.3)">
+      1. Construye la <strong>matriz de coeficientes</strong> [A] y el vector de términos independientes [b].<br>
+      2. Calcula el <strong>determinante principal</strong> D = det(A).<br>
+      3. Si D = 0, el sistema es <em>incompatible</em> (sin solución) o <em>indeterminado</em> (infinitas soluciones).<br>
+      4. Para cada variable xᵢ, reemplaza la columna i de [A] con el vector [b] para obtener la matriz Dᵢ.<br>
+      5. La solución es: <strong>xᵢ = Dᵢ / D</strong>
+    </p>
+    <div style="background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:12px;color:var(--focus);line-height:1.8">
+      Ejemplo 2×2: &nbsp; 2x + 3y = 8 &nbsp;&nbsp; / &nbsp;&nbsp; 5x + y = 7<br>
+      D  = 2×1 − 3×5 = −13<br>
+      Dx = 8×1 − 3×7 = −13 &nbsp;&nbsp;→ x = Dx/D = 1<br>
+      Dy = 2×7 − 8×5 = −26 &nbsp;&nbsp;→ y = Dy/D = 2
+    </div>
+    <p class="seo-p">La aplicación calcula y muestra cada determinante intermedio (D, Dx, Dy, Dz) para que puedas seguir el proceso paso a paso, ideal para verificar tus cálculos manuales o entender el método en álgebra lineal.</p>
+
+    <!-- 3. Fórmula cuadrática y discriminante -->
+    <div class="seo-tag" style="margin-top:22px">📈 La fórmula cuadrática y el discriminante</div>
+    <p class="seo-p">Para ecuaciones de grado 2 de la forma <strong>ax² + bx + c = 0</strong>, la herramienta aplica la <strong>fórmula cuadrática general</strong>, también llamada fórmula de Bhaskara:</p>
+    <div style="background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:12px;color:var(--focus);line-height:1.8">
+      x = ( −b ± √(b² − 4ac) ) / 2a<br><br>
+      Discriminante D = b² − 4ac:<br>
+      &nbsp; D &gt; 0 → dos raíces reales distintas<br>
+      &nbsp; D = 0 → una raíz real doble: x = −b / 2a<br>
+      &nbsp; D &lt; 0 → dos raíces complejas conjugadas: a+bi y a−bi
+    </div>
+    <p class="seo-p"><strong>Ejemplo:</strong> x² − 5x + 6 = 0 → a=1, b=−5, c=6. Discriminante: D = 25 − 24 = 1. Soluciones: x = (5 ± 1) / 2, por tanto <strong>x₁ = 3</strong> y <strong>x₂ = 2</strong>. Como D &gt; 0, ambas raíces son reales y distintas.</p>
+
+    <!-- 4. Newton-Raphson -->
+    <div class="seo-tag" style="margin-top:22px">⚡ El método Newton-Raphson: cómo funciona</div>
+    <p class="seo-p">El <strong>método de Newton-Raphson</strong> es el algoritmo iterativo de búsqueda de raíces más rápido para funciones diferenciables. Su intuición geométrica es elegante: partiendo de un punto inicial x₀, traza la recta tangente a la curva f(x) y encuentra dónde corta el eje x (ese punto es x₁). Repite el proceso desde x₁ y así sucesivamente hasta converger:</p>
+    <div style="background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:12px;color:var(--focus);line-height:1.8">
+      x_(n+1) = x_n − f(x_n) / f'(x_n)<br><br>
+      Esta app usa derivada numérica:<br>
+      f'(x) ≈ [ f(x+h) − f(x−h) ] / (2h) &nbsp;&nbsp; con h = 10⁻⁷
+    </div>
+    <p class="seo-p"><strong>Ventajas:</strong> convergencia cuadrática (el número de decimales correctos se duplica en cada iteración). <strong>Desventajas:</strong> puede no converger si el punto inicial está lejos de la raíz o si la derivada se anula cerca de la solución. Por eso, esta herramienta combina Newton-Raphson con Bisección como respaldo: si Newton falla, Bisección toma el relevo garantizando la convergencia.</p>
+
+    <!-- 5. Bisección -->
+    <div class="seo-tag" style="margin-top:22px">🎯 El método de bisección: garantizando convergencia</div>
+    <p class="seo-p">El <strong>Teorema de Bolzano</strong> establece que si f(a) y f(b) tienen signos opuestos en una función continua, entonces existe al menos una raíz en el intervalo [a, b]. El método de bisección explota este hecho de manera sistemática:</p>
+    <p class="seo-p" style="padding-left:12px;border-left:2px solid rgba(0,212,255,0.3)">
+      1. Toma el punto medio m = (a + b) / 2.<br>
+      2. Evalúa f(m): si |f(m)| &lt; tolerancia, m es la raíz.<br>
+      3. Comprueba en qué mitad se produce el cambio de signo y repite.<br>
+      4. El intervalo se reduce a la mitad en cada iteración → convergencia garantizada.
+    </p>
+    <p class="seo-p">Es más lento que Newton-Raphson (convergencia lineal vs. cuadrática), pero <strong>siempre converge</strong>. La aplicación escanea automáticamente <strong>500 subintervalos</strong> dentro del rango [a, b] que introduzcas, buscando cambios de signo para detectar todas las raíces reales posibles, no solo una.</p>
+
+    <!-- 6. Guía de uso -->
+    <div class="seo-tag" style="margin-top:22px">🗺️ Cuándo usar cada método: guía práctica</div>
+    <p class="seo-p">¿No sabes qué pestaña elegir? Aquí tienes la guía rápida:</p>
+    <div style="background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:11px;color:var(--focus);line-height:2">
+      Sistema 2 ó 3 incógnitas con coeficientes → Regla de Cramer<br>
+      Ecuación de grado 2 (ax²+bx+c=0) &nbsp;&nbsp;&nbsp;&nbsp;→ Cuadrática (exacto)<br>
+      Polinomio de grado 3 ó 4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ Durand-Kerner numérico<br>
+      Ecuación con sin/cos/ln/exp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ Ecuación Libre<br>
+      No sabes el tipo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ Ecuación Libre, siempre funciona
+    </div>
+    <p class="seo-p">Para el método libre, elige una <strong>semilla (x₀)</strong> cercana a la raíz que sospeches y un <strong>rango de búsqueda [a, b]</strong> razonable. Si la función tiene varias raíces en ese intervalo, la aplicación las encontrará todas automáticamente.</p>
+
+    <!-- 7. FAQ -->
+    <div class="seo-tag" style="margin-top:22px">❓ Preguntas frecuentes</div>
+
+    <p class="seo-p"><strong>¿Qué significa que un sistema sea "incompatible"?</strong><br>
+    Significa que las ecuaciones son contradictorias: no existe ningún valor de las incógnitas que satisfaga todas simultáneamente. Matemáticamente, el determinante D = 0. Si además los determinantes Dᵢ también son cero, el sistema es <em>indeterminado</em> (infinitas soluciones, ecuaciones redundantes). La herramienta detecta ambos casos automáticamente.</p>
+
+    <p class="seo-p"><strong>¿Por qué a veces Newton-Raphson no converge?</strong><br>
+    El método necesita que el punto inicial x₀ esté suficientemente cerca de la raíz real. Si la función tiene pendiente muy pequeña (derivada ≈ 0) en ese punto, o si x₀ cae en una zona donde la función oscila, el método puede divergir o ciclar. Por eso la aplicación siempre complementa Newton-Raphson con el escaneo por bisección en el rango que especificas, asegurando que se encuentren raíces aunque Newton falle.</p>
+
+    <p class="seo-p"><strong>¿Puedo resolver sistemas con más de 3 incógnitas?</strong><br>
+    Esta herramienta está optimizada para sistemas 2×2 y 3×3. Para sistemas más grandes (4×4 o superior) se recomienda usar la <em>eliminación gaussiana</em> (reducción por filas) o factorización LU, técnicas propias del álgebra lineal numérica que exceden el alcance de esta calculadora de bolsillo.</p>
+
+    <p class="seo-p"><strong>¿Qué son las raíces complejas y para qué sirven?</strong><br>
+    Son números de la forma <strong>a + bi</strong>, donde <em>a</em> es la parte real, <em>b</em> la parte imaginaria e <em>i = √(−1)</em>. Aparecen cuando el discriminante D &lt; 0 en una ecuación cuadrática, o en polinomios de grado superior sin todas las raíces reales. En ingeniería eléctrica y análisis de señales, las raíces complejas describen oscilaciones y respuestas de sistemas dinámicos. La herramienta las muestra en formato a ± bi.</p>
+
   </div>
 
   <div style="text-align:center;padding:24px 0 0;border-top:1px solid var(--border)">
     <a href="toolkit.html" style="color:var(--text-faint);font-size:11px;text-decoration:none;margin:0 10px">← Volver al Toolkit</a>
-    <a href="index.html"   style="color:var(--text-faint);font-size:11px;text-decoration:none;margin:0 10px">⏱ Timer</a>
+    <a href="index.html" style="color:var(--text-faint);font-size:11px;text-decoration:none;margin:0 10px">⏱ Timer</a>
     <a href="privacy.html" style="color:var(--text-faint);font-size:11px;text-decoration:none;margin:0 10px">Privacidad</a>
   </div>
 
