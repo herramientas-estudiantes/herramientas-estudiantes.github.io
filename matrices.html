@@ -191,24 +191,39 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .steps-box {
   background: var(--bg2); border: 1px solid var(--border);
   border-radius: 10px; padding: 16px; margin-top: 10px;
-  display: none; max-height: 320px; overflow-y: auto;
+  display: none; max-height: 420px; overflow-y: auto;
 }
 .steps-box.open { display: block; }
 .step-line {
-  font-size: 12px; color: var(--text-dim); line-height: 1.9;
-  font-family: 'Orbitron', monospace;
+  font-size: 13px; color: var(--text-dim); line-height: 1.7;
+  font-family: 'Outfit', sans-serif; margin-bottom: 8px;
 }
 .step-line strong { color: var(--text); }
-.step-sep { height: 1px; background: var(--border); margin: 8px 0; }
+.step-sep { height: 1px; background: var(--border); margin: 16px 0; opacity: 0.5; }
+.step-matrix { display: inline-grid; gap: 4px; margin: 8px 0; position: relative; padding: 4px 8px; }
+.step-matrix::before, .step-matrix::after { content: ''; position: absolute; top: 0; bottom: 0; width: 4px; border: 2px solid rgba(176,106,255,0.4); border-radius: 2px; }
+.step-matrix::before { left: 0; border-right: none; }
+.step-matrix::after { right: 0; border-left: none; }
+.step-m-cell { font-family: 'Orbitron', monospace; font-size: 12px; color: var(--text); padding: 2px 6px; text-align: center; }
 
 /* ERROR BOX */
 .error-box {
   background: rgba(255,50,50,0.07); border: 1px solid rgba(255,50,50,0.3);
   border-radius: 10px; padding: 14px 18px;
   font-size: 13px; color: #ff6b6b; line-height: 1.6;
-  display: none;
+  display: none; margin-bottom: 12px;
 }
 .error-box.visible { display: block; }
+
+/* OP SELECTOR */
+.op-select-wrap { margin-bottom: 24px; }
+.op-select {
+  width: 100%; background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--focus); font-family: 'Orbitron', monospace;
+  font-size: 14px; font-weight: 700; padding: 12px 16px; cursor: pointer;
+  transition: all 0.2s; outline: none; appearance: none;
+}
+.op-select:focus { border-color: var(--focus); box-shadow: 0 0 12px var(--focus-d); }
 
 /* SEO */
 .seo-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 26px; backdrop-filter: blur(10px); margin-bottom: 20px; }
@@ -255,8 +270,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 
   <div class="hero">
     <div class="hero-tag">🔢 Calculadora Versátil</div>
-    <h1 class="hero-title">Multiplicación de Matrices</h1>
-    <p class="hero-sub">Define el tamaño de las dos matrices (hasta 7×7), introduce sus coeficientes y obtén A × B al instante con el desarrollo paso a paso de cada elemento.</p>
+    <h1 class="hero-title">Álgebra Lineal</h1>
+    <p class="hero-sub">Calcula operaciones avanzadas como Gauss-Jordan, Inversas, Determinantes, Sumas y Multiplicaciones con desarrollo paso a paso didáctico.</p>
   </div>
 
   <!-- AD -->
@@ -267,12 +282,24 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 
   <!-- INPUT CARD -->
   <div class="card">
-    <div class="card-title">📐 Introduce las matrices</div>
+    <div class="card-title">📐 Selecciona Operación y Matrices</div>
 
-    <div class="matrices-row">
+    <div class="op-select-wrap">
+      <select class="op-select" id="op-select" onchange="changeOp()">
+        <option value="mult">Multiplicar (A × B)</option>
+        <option value="add">Sumar (A + B)</option>
+        <option value="sub">Restar (A - B)</option>
+        <option value="inv">Inversa (A⁻¹)</option>
+        <option value="ech">Escalonar Gauss (Ref A)</option>
+        <option value="det">Determinante (|A|)</option>
+        <option value="trans">Transpuesta (Aᵀ)</option>
+      </select>
+    </div>
+
+    <div class="matrices-row" id="matrices-row">
 
       <!-- MATRIX A -->
-      <div class="matrix-block">
+      <div class="matrix-block" id="block-a">
         <div class="matrix-header">
           <span class="matrix-name">Matriz A</span>
           <div class="size-selectors">
@@ -293,13 +320,13 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
       </div>
 
       <!-- OPERATOR -->
-      <div class="operator-col">
-        <div class="op-symbol">×</div>
+      <div class="operator-col" id="op-col">
+        <div class="op-symbol" id="op-symbol">×</div>
         <div class="compat-badge ok" id="compat-badge">✓ Compatible</div>
       </div>
 
       <!-- MATRIX B -->
-      <div class="matrix-block">
+      <div class="matrix-block" id="block-b">
         <div class="matrix-header">
           <span class="matrix-name">Matriz B</span>
           <div class="size-selectors">
@@ -322,11 +349,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
     </div>
 
     <!-- ERROR -->
-    <div class="error-box" id="error-box">
-      ✕ Las matrices no son compatibles: el número de <strong>columnas de A</strong> debe ser igual al número de <strong>filas de B</strong>.
-    </div>
+    <div class="error-box" id="error-box"></div>
 
-    <button class="btn-calc" id="btn-calc" onclick="calculate()">⚡ CALCULAR A × B</button>
+    <button class="btn-calc" id="btn-calc" onclick="calculate()">⚡ CALCULAR</button>
   </div>
 
   <!-- RESULT SECTION -->
@@ -458,7 +483,7 @@ function getSize(id) { return parseInt(document.getElementById(id).value); }
 function fmt(n) {
   if (!isFinite(n)) return '?';
   const f = parseFloat(n.toPrecision(10));
-  return f % 1 === 0 ? String(f) : String(parseFloat(f.toFixed(6)));
+  return f % 1 === 0 ? String(f) : String(parseFloat(f.toFixed(4)));
 }
 
 function getMatrix(prefix, rows, cols) {
@@ -472,10 +497,26 @@ function getMatrix(prefix, rows, cols) {
   return M;
 }
 
+function cloneMatrix(M) {
+  return M.map(row => [...row]);
+}
+
+function htmlMatrix(M) {
+  const r = M.length, c = M[0].length;
+  let html = `<div class="step-matrix" style="grid-template-columns: repeat(${c}, 1fr)">`;
+  for(let i=0; i<r; i++) {
+    for(let j=0; j<c; j++) {
+      html += `<div class="step-m-cell">${fmt(M[i][j])}</div>`;
+    }
+  }
+  html += `</div>`;
+  return html;
+}
+
 // ================================================================
 // BUILD GRIDS
 // ================================================================
-function buildGrid(containerId, prefix, rows, cols, readOnly = false) {
+function buildGrid(containerId, prefix, rows, cols, readOnly = false, initialData = null) {
   const wrap = document.getElementById(containerId);
   const grid = document.createElement('div');
   grid.className = 'matrix-grid';
@@ -488,7 +529,13 @@ function buildGrid(containerId, prefix, rows, cols, readOnly = false) {
       cell.step  = 'any';
       cell.id    = `${prefix}-${i}-${j}`;
       cell.className = 'm-cell' + (readOnly ? ' result-cell' : '');
-      cell.value = readOnly ? '0' : defaultVal(prefix, i, j, rows, cols);
+      
+      let val = 0;
+      if (initialData && initialData[i] && initialData[i][j] !== undefined) val = initialData[i][j];
+      else if (!readOnly) val = defaultVal(prefix, i, j, rows, cols);
+      
+      cell.value = readOnly ? fmt(val) : val;
+      
       if (readOnly) { cell.readOnly = true; cell.tabIndex = -1; }
       else cell.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); calculate(); } });
       grid.appendChild(cell);
@@ -499,105 +546,309 @@ function buildGrid(containerId, prefix, rows, cols, readOnly = false) {
   wrap.appendChild(grid);
 }
 
-// Nice default values for demo
 function defaultVal(prefix, i, j, rows, cols) {
   const demoA = [[1,2,3],[4,5,6],[7,8,9]];
   const demoB = [[9,8,7],[6,5,4],[3,2,1]];
   if (prefix === 'a' && rows === 3 && cols === 3 && demoA[i]?.[j] !== undefined) return demoA[i][j];
   if (prefix === 'b' && rows === 3 && cols === 3 && demoB[i]?.[j] !== undefined) return demoB[i][j];
-  return i === j ? 1 : 0; // identity-ish
+  return i === j ? 1 : 0; // identity
+}
+
+let currentOp = 'mult';
+
+function changeOp() {
+  currentOp = document.getElementById('op-select').value;
+  const blockB = document.getElementById('block-b');
+  const opCol = document.getElementById('op-col');
+  const sym = document.getElementById('op-symbol');
+  
+  if (['mult', 'add', 'sub'].includes(currentOp)) {
+    blockB.style.display = 'flex';
+    opCol.style.display = 'flex';
+    if (currentOp === 'mult') sym.textContent = '×';
+    if (currentOp === 'add') sym.textContent = '+';
+    if (currentOp === 'sub') sym.textContent = '-';
+  } else {
+    blockB.style.display = 'none';
+    opCol.style.display = 'none';
+  }
+  rebuildAll();
 }
 
 function rebuildAll() {
   const aR = getSize('a-rows'), aC = getSize('a-cols');
-  const bR = getSize('b-rows'), bC = getSize('b-cols');
+  let bR = getSize('b-rows'), bC = getSize('b-cols');
+  
+  // auto-adjust constraints
+  if (currentOp === 'add' || currentOp === 'sub') {
+    document.getElementById('b-rows').value = aR;
+    document.getElementById('b-cols').value = aC;
+    bR = aR; bC = aC;
+  }
+  if (['inv', 'det'].includes(currentOp)) {
+    document.getElementById('a-cols').value = aR;
+  }
 
-  // Lock B rows to A cols for convenience hint
-  buildGrid('grid-a', 'a', aR, aC);
-  buildGrid('grid-b', 'b', bR, bC);
+  buildGrid('grid-a', 'a', aR, getSize('a-cols'));
+  if (['mult', 'add', 'sub'].includes(currentOp)) {
+    buildGrid('grid-b', 'b', bR, bC);
+  }
+  
   checkCompat();
   hideResult();
 }
 
 function checkCompat() {
-  const aC = getSize('a-cols');
-  const bR = getSize('b-rows');
-  const badge  = document.getElementById('compat-badge');
+  const aR = getSize('a-rows'), aC = getSize('a-cols');
+  const bR = getSize('b-rows'), bC = getSize('b-cols');
+  const badge = document.getElementById('compat-badge');
   const errBox = document.getElementById('error-box');
   const btnCalc = document.getElementById('btn-calc');
-  const ok = (aC === bR);
+  let ok = true, msg = '';
 
-  badge.className  = 'compat-badge ' + (ok ? 'ok' : 'err');
-  badge.textContent = ok ? `✓ Compatible` : `✕ Cols A ≠ Filas B`;
-  errBox.classList.toggle('visible', !ok);
+  if (currentOp === 'mult') {
+    ok = (aC === bR);
+    badge.textContent = ok ? `✓ Compatible` : `✕ Incompatible`;
+    msg = `Las matrices no son compatibles: columnas de A (${aC}) debe ser igual a filas de B (${bR}).`;
+  } else if (currentOp === 'add' || currentOp === 'sub') {
+    ok = (aR === bR && aC === bC);
+    badge.textContent = ok ? `✓ Compatible` : `✕ Distinta Dimensión`;
+    msg = `Las matrices deben tener las mismas dimensiones.`;
+  } else if (currentOp === 'inv' || currentOp === 'det') {
+    ok = (aR === aC);
+    msg = `La matriz debe ser cuadrada (N×N) para esta operación.`;
+  }
+
+  badge.className = 'compat-badge ' + (ok ? 'ok' : 'err');
+  if (['inv', 'det', 'ech', 'trans'].includes(currentOp)) {
+    errBox.classList.toggle('visible', !ok);
+    errBox.innerHTML = `✕ ${msg}`;
+  } else {
+    errBox.classList.toggle('visible', !ok);
+    errBox.innerHTML = `✕ ${msg}`;
+  }
   btnCalc.disabled = !ok;
 }
 
 // ================================================================
-// MULTIPLY
+// MATH ENGINE
 // ================================================================
-function multiplyMatrices(A, B) {
+
+function calculate() {
+  const aR = getSize('a-rows'), aC = getSize('a-cols');
+  const A = getMatrix('a', aR, aC);
+  let B = null, res = null;
+  
+  if (['mult', 'add', 'sub'].includes(currentOp)) {
+    B = getMatrix('b', getSize('b-rows'), getSize('b-cols'));
+  }
+
+  const stepsBox = document.getElementById('steps-box');
+  stepsBox.innerHTML = '';
+  document.getElementById('result-dims').textContent = '';
+
+  try {
+    if (currentOp === 'mult') res = opMult(A, B);
+    else if (currentOp === 'add') res = opAddSub(A, B, 1);
+    else if (currentOp === 'sub') res = opAddSub(A, B, -1);
+    else if (currentOp === 'trans') res = opTrans(A);
+    else if (currentOp === 'ech') res = opEchelon(A);
+    else if (currentOp === 'inv') res = opInverse(A);
+    else if (currentOp === 'det') res = opDet(A);
+    
+    // Result Render
+    if (res.matrix) {
+      buildGrid('grid-result', 'c', res.matrix.length, res.matrix[0].length, true, res.matrix);
+      document.getElementById('result-dims').textContent = `${res.matrix.length} × ${res.matrix[0].length}`;
+    } else if (res.value !== undefined) {
+      document.getElementById('grid-result').innerHTML = `<div style="font-family:'Orbitron',monospace;font-size:24px;color:var(--focus);padding:10px">${fmt(res.value)}</div>`;
+    }
+
+    stepsBox.innerHTML = res.html;
+    stepsBox.classList.remove('open');
+    document.getElementById('btn-steps').textContent = '▼ Ver desarrollo paso a paso';
+    
+    document.getElementById('result-section').classList.add('visible');
+    document.getElementById('result-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    
+  } catch (err) {
+    document.getElementById('error-box').classList.add('visible');
+    document.getElementById('error-box').innerHTML = `✕ ${err.message}`;
+  }
+}
+
+// OPs
+function opMult(A, B) {
   const m = A.length, n = B.length, p = B[0].length;
   const C = Array.from({length: m}, () => new Array(p).fill(0));
-  const steps = []; // array of step strings per cell
-
+  let html = '';
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < p; j++) {
-      let sum = 0;
-      const parts = [];
+      let sum = 0; const parts = [];
       for (let k = 0; k < n; k++) {
         sum += A[i][k] * B[k][j];
         parts.push(`${fmt(A[i][k])}×${fmt(B[k][j])}`);
       }
       C[i][j] = sum;
-      steps.push({ i, j, parts, result: sum });
+      html += `<div class="step-line">C[${i+1}][${j+1}] = ${parts.join(' + ')} = <strong>${fmt(sum)}</strong></div>`;
     }
   }
-  return { C, steps };
+  return { matrix: C, html };
 }
 
-function calculate() {
-  const aR = getSize('a-rows'), aC = getSize('a-cols');
-  const bR = getSize('b-rows'), bC = getSize('b-cols');
-  if (aC !== bR) { checkCompat(); return; }
+function opAddSub(A, B, sign) {
+  const r = A.length, c = A[0].length;
+  const C = Array.from({length: r}, () => new Array(c).fill(0));
+  let html = '';
+  const s = sign > 0 ? '+' : '-';
+  for (let i = 0; i < r; i++) {
+    for (let j = 0; j < c; j++) {
+      C[i][j] = A[i][j] + (sign * B[i][j]);
+      html += `<div class="step-line">C[${i+1}][${j+1}] = ${fmt(A[i][j])} ${s} ${fmt(B[i][j])} = <strong>${fmt(C[i][j])}</strong></div>`;
+    }
+  }
+  return { matrix: C, html };
+}
 
-  const A = getMatrix('a', aR, aC);
-  const B = getMatrix('b', bR, bC);
-  const { C, steps } = multiplyMatrices(A, B);
+function opTrans(A) {
+  const r = A.length, c = A[0].length;
+  const C = Array.from({length: c}, () => new Array(r).fill(0));
+  let html = `<div class="step-line">Las filas se convierten en columnas:</div>`;
+  for (let i = 0; i < r; i++) {
+    for (let j = 0; j < c; j++) {
+      C[j][i] = A[i][j];
+      html += `<div class="step-line">C[${j+1}][${i+1}] = A[${i+1}][${j+1}] = <strong>${fmt(A[i][j])}</strong></div>`;
+    }
+  }
+  return { matrix: C, html };
+}
 
-  const cR = aR, cC = bC;
-
-  // Build result grid (read-only)
-  buildGrid('grid-result', 'c', cR, cC, true);
-
-  // Fill result with animation
-  setTimeout(() => {
-    for (let i = 0; i < cR; i++) {
-      for (let j = 0; j < cC; j++) {
-        const cell = document.getElementById(`c-${i}-${j}`);
-        if (cell) {
-          cell.value = fmt(C[i][j]);
-          cell.classList.add('highlight');
-          setTimeout(() => cell.classList.remove('highlight'), 600);
-        }
+// Gaussian Elimination (Ref)
+function opEchelon(A) {
+  let M = cloneMatrix(A);
+  const r = M.length, c = M[0].length;
+  let html = `<div class="step-line">Matriz inicial:</div>${htmlMatrix(M)}<div class="step-sep"></div>`;
+  
+  let pivotRow = 0;
+  for (let j = 0; j < c && pivotRow < r; j++) {
+    let maxIdx = pivotRow;
+    for (let i = pivotRow + 1; i < r; i++) {
+      if (Math.abs(M[i][j]) > Math.abs(M[maxIdx][j])) maxIdx = i;
+    }
+    
+    if (Math.abs(M[maxIdx][j]) < 1e-10) continue;
+    
+    if (maxIdx !== pivotRow) {
+      const temp = M[pivotRow]; M[pivotRow] = M[maxIdx]; M[maxIdx] = temp;
+      html += `<div class="step-line">Intercambio Fila ${pivotRow+1} ↔ Fila ${maxIdx+1} para obtener pivote mayor:</div>${htmlMatrix(M)}<div class="step-sep"></div>`;
+    }
+    
+    let eliminated = false;
+    for (let i = pivotRow + 1; i < r; i++) {
+      if (Math.abs(M[i][j]) > 1e-10) {
+        const factor = M[i][j] / M[pivotRow][j];
+        for (let k = j; k < c; k++) M[i][k] -= factor * M[pivotRow][k];
+        html += `<div class="step-line">Fila ${i+1} = Fila ${i+1} - (${fmt(factor)}) × Fila ${pivotRow+1}</div>`;
+        eliminated = true;
       }
     }
-  }, 30);
+    if (eliminated && pivotRow + 1 < r) html += `${htmlMatrix(M)}<div class="step-sep"></div>`;
+    pivotRow++;
+  }
+  html += `<div class="step-line"><strong>Matriz Escalonada final obtenida.</strong></div>`;
+  return { matrix: M, html };
+}
 
-  // Dims label
-  document.getElementById('result-dims').textContent = `${cR} × ${cC}`;
+// Gauss-Jordan Inverse
+function opInverse(A) {
+  const n = A.length;
+  let M = cloneMatrix(A);
+  let Inv = Array.from({length: n}, (_, i) => {
+    const row = new Array(n).fill(0); row[i] = 1; return row;
+  });
+  
+  let html = `<div class="step-line">Matriz aumentada [A | I]:</div>`;
+  
+  for (let i = 0; i < n; i++) {
+    let maxIdx = i;
+    for (let k = i + 1; k < n; k++) if (Math.abs(M[k][i]) > Math.abs(M[maxIdx][i])) maxIdx = k;
+    
+    if (Math.abs(M[maxIdx][i]) < 1e-10) throw new Error("La matriz es singular, su determinante es 0 y NO tiene inversa.");
+    
+    if (maxIdx !== i) {
+      let t1 = M[i], t2 = Inv[i];
+      M[i] = M[maxIdx]; Inv[i] = Inv[maxIdx];
+      M[maxIdx] = t1; Inv[maxIdx] = t2;
+      html += `<div class="step-line">Intercambio Fila ${i+1} ↔ Fila ${maxIdx+1}</div>`;
+    }
+    
+    const pivot = M[i][i];
+    if (Math.abs(pivot - 1) > 1e-10) {
+      for (let j = 0; j < n; j++) { M[i][j] /= pivot; Inv[i][j] /= pivot; }
+      html += `<div class="step-line">Fila ${i+1} = Fila ${i+1} / ${fmt(pivot)} (normalizar pivote a 1)</div>`;
+    }
+    
+    let eliminated = false;
+    for (let k = 0; k < n; k++) {
+      if (k !== i && Math.abs(M[k][i]) > 1e-10) {
+        const factor = M[k][i];
+        for (let j = 0; j < n; j++) {
+          M[k][j] -= factor * M[i][j];
+          Inv[k][j] -= factor * Inv[i][j];
+        }
+        html += `<div class="step-line">Fila ${k+1} = Fila ${k+1} - (${fmt(factor)}) × Fila ${i+1}</div>`;
+        eliminated = true;
+      }
+    }
+    if (eliminated) html += `${htmlMatrix(Inv)}<div class="step-sep"></div>`;
+  }
+  html += `<div class="step-line"><strong>Hemos llegado a [I | A⁻¹]. A⁻¹ es:</strong></div>`;
+  return { matrix: Inv, html };
+}
 
-  // Steps
-  const stepsBox = document.getElementById('steps-box');
-  stepsBox.innerHTML = steps.map(s =>
-    `<div class="step-line">C[${s.i+1}][${s.j+1}] = ${s.parts.join(' + ')} = <strong>${fmt(s.result)}</strong></div>`
-  ).join('') + (steps.length > 12 ? '' : '');
-  stepsBox.classList.remove('open');
-  document.getElementById('btn-steps').textContent = '▼ Ver desarrollo paso a paso';
-
-  // Show result
-  document.getElementById('result-section').classList.add('visible');
-  document.getElementById('result-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+// Determinant (via Gauss reduction)
+function opDet(A) {
+  const n = A.length;
+  let M = cloneMatrix(A);
+  let det = 1; let swaps = 0;
+  let html = `<div class="step-line">Reduciremos la matriz a forma triangular superior. El determinante es el producto de su diagonal principal.</div><div class="step-sep"></div>`;
+  
+  for (let i = 0; i < n; i++) {
+    let maxIdx = i;
+    for (let k = i + 1; k < n; k++) if (Math.abs(M[k][i]) > Math.abs(M[maxIdx][i])) maxIdx = k;
+    
+    if (Math.abs(M[maxIdx][i]) < 1e-10) {
+      html += `<div class="step-line">Columna ${i+1} es cero. El determinante es <strong>0</strong>.</div>`;
+      return { value: 0, html };
+    }
+    
+    if (maxIdx !== i) {
+      let t = M[i]; M[i] = M[maxIdx]; M[maxIdx] = t;
+      swaps++;
+      html += `<div class="step-line">Intercambio Fila ${i+1} ↔ Fila ${maxIdx+1}. (El signo del det cambia a ${swaps%2!==0?'-':'+'})</div>`;
+    }
+    
+    let eliminated = false;
+    for (let k = i + 1; k < n; k++) {
+      if (Math.abs(M[k][i]) > 1e-10) {
+        const factor = M[k][i] / M[i][i];
+        for (let j = i; j < n; j++) M[k][j] -= factor * M[i][j];
+        html += `<div class="step-line">Fila ${k+1} = Fila ${k+1} - (${fmt(factor)}) × Fila ${i+1}</div>`;
+        eliminated = true;
+      }
+    }
+    if (eliminated) html += `${htmlMatrix(M)}<div class="step-sep"></div>`;
+  }
+  
+  let dParts = [];
+  for (let i = 0; i < n; i++) {
+    det *= M[i][i];
+    dParts.push(fmt(M[i][i]));
+  }
+  if (swaps % 2 !== 0) { det = -det; dParts.unshift("-1 (por cambios de fila)"); }
+  
+  html += `<div class="step-line">Multiplicamos la diagonal: ${dParts.join(' × ')} = <strong>${fmt(det)}</strong></div>`;
+  return { value: det, html };
 }
 
 function toggleSteps() {
@@ -614,7 +865,8 @@ function hideResult() {
 // ================================================================
 // INIT
 // ================================================================
-rebuildAll();
+document.getElementById('op-select').value = 'mult';
+changeOp();
 </script>
 </body>
 </html>
