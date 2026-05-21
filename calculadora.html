@@ -337,17 +337,112 @@ body {
   </div>
 
   <!-- SEO CONTENT -->
-  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;margin-bottom:24px;backdrop-filter:blur(10px)">
-    <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:0.22em;font-weight:700;margin-bottom:12px">📐 ¿Cómo funciona la media ponderada?</div>
+
+  <!-- SECCIÓN 1: Qué es la nota media ponderada -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:20px;backdrop-filter:blur(10px)">
+    <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:0.22em;font-weight:700;margin-bottom:12px">📐 ¿Qué es la nota media ponderada?</div>
     <p style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:12px">
-      La <strong style="color:var(--text)">media ponderada</strong> es el sistema de calificación más utilizado en universidades y escuelas porque no todas las evaluaciones tienen el mismo peso en la nota final. A diferencia de la media aritmética simple —donde todas las notas cuentan igual— la media ponderada multiplica cada nota por su porcentaje de relevancia y suma los resultados.
+      La <strong style="color:var(--text)">nota media ponderada</strong> es el sistema de calificación estándar en la universidad española (y en la mayoría de centros europeos) porque reconoce que no todas las evaluaciones tienen el mismo valor. Un parcial que cuenta un 30% no puede equipararse a un examen final que cuenta el 50%. A diferencia de la <em>media aritmética simple</em> —donde todas las notas suman igual— la media ponderada multiplica cada nota por su peso relativo antes de promediar, dando un resultado mucho más justo y preciso.
+    </p>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:14px">
+      La fórmula matemática es directa: sumas el producto de cada nota por su peso, y lo divides entre la suma total de pesos. En porcentajes, si los pesos ya suman 100, la división es implícita.
+    </p>
+    <div style="background:rgba(255,214,0,0.06);border:1px solid rgba(255,214,0,0.2);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:13px;color:var(--gold);text-align:center">
+      Nota final = Σ (nota<sub>i</sub> × peso<sub>i</sub>) / Σ (peso<sub>i</sub>)
+    </div>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:10px">
+      <strong style="color:var(--text)">Ejemplo real:</strong> tienes tres evaluaciones — un parcial (30%) con un <strong style="color:var(--gold)">6,5</strong>, un trabajo (20%) con un <strong style="color:var(--gold)">8,0</strong> y el examen final (50%) con un <strong style="color:var(--gold)">5,5</strong>. El cálculo sería:
+    </p>
+    <div style="background:rgba(255,214,0,0.06);border:1px solid rgba(255,214,0,0.2);border-radius:10px;padding:14px 16px;margin-bottom:4px;font-family:'Orbitron',monospace;font-size:12px;color:var(--gold);text-align:center;line-height:2">
+      (6,5 × 0,30) + (8,0 × 0,20) + (5,5 × 0,50)<br>
+      = 1,95 + 1,60 + 2,75<br>
+      <span style="font-size:15px;color:var(--short)">= 6,30 / 10 ✅ Aprobado</span>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2: Cómo usar la calculadora paso a paso -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:20px;backdrop-filter:blur(10px)">
+    <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:0.22em;font-weight:700;margin-bottom:12px">🛠️ Cómo usar esta calculadora paso a paso</div>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:14px">
+      Diseñada para ser rápida e intuitiva, esta herramienta te guía desde añadir la asignatura hasta saber exactamente qué nota necesitas. Sigue estos pasos:
+    </p>
+    <ol style="font-size:14px;color:var(--text-dim);line-height:2;margin-left:20px;margin-bottom:10px">
+      <li>Pulsa <strong style="color:var(--gold)">＋ Añadir Asignatura</strong> e introduce el nombre de tu asignatura (ej: "Cálculo II" o "Marketing Digital").</li>
+      <li>Pulsa <strong style="color:var(--gold)">＋ Añadir evaluación</strong> para cada componente de la nota: parcial, trabajo, exposición, examen final…</li>
+      <li>Introduce el <strong style="color:var(--text)">porcentaje (%)</strong> que pesa esa evaluación sobre la nota final. Asegúrate de que todos sumen 100.</li>
+      <li>Introduce la <strong style="color:var(--text)">nota que has sacado</strong> (escala 0-10) en las evaluaciones ya realizadas.</li>
+      <li><strong style="color:var(--gold)">Deja en blanco</strong> las evaluaciones que aún no has realizado: la calculadora te mostrará automáticamente qué nota necesitas en ese porcentaje restante para aprobar.</li>
+      <li>Tus datos se <strong style="color:var(--text)">guardan automáticamente</strong> en tu navegador con localStorage — sin registros ni cuentas.</li>
+    </ol>
+  </div>
+
+  <!-- SECCIÓN 3: ¿Qué nota necesito en el examen final? -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:20px;backdrop-filter:blur(10px)">
+    <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:0.22em;font-weight:700;margin-bottom:12px">🎯 ¿Qué nota necesito en el examen final?</div>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:12px">
+      Este es el cálculo inverso más útil para cualquier estudiante. Imagina que ya has realizado el 40% de tu nota con una media parcial acumulada de <strong style="color:var(--gold)">1,80 puntos</strong> (por ejemplo, un 6 en el parcial del 30% da 1,80 pts). Necesitas alcanzar un <strong style="color:var(--text)">5,0</strong> final. ¿Qué nota mínima necesitas en el 60% restante?
+    </p>
+    <div style="background:rgba(255,214,0,0.06);border:1px solid rgba(255,214,0,0.2);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:13px;color:var(--gold);text-align:center;line-height:2">
+      Nota_necesaria = (5 − puntos_acumulados) / (porcentaje_pendiente / 100)<br>
+      <span style="font-size:12px">= (5 − 1,80) / (60 / 100) = 3,20 / 0,60 = <span style="color:var(--short)">5,33</span></span>
+    </div>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75">
+      En este caso necesitarías un <strong style="color:var(--short)">5,33</strong> en el examen final para aprobar. Esta calculadora hace ese cómputo en tiempo real cada vez que introduces un dato, mostrándote el resultado con un código de color: <strong style="color:var(--short)">verde</strong> (asequible), <strong style="color:var(--gold)">amarillo</strong> (exigente pero posible), <strong style="color:#ff6b6b">rojo</strong> (matemáticamente imposible) o <strong style="color:var(--focus)">azul</strong> (ya aprobado).
+    </p>
+  </div>
+
+  <!-- SECCIÓN 4: Sistema de calificación en España y Europa -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:20px;backdrop-filter:blur(10px)">
+    <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:0.22em;font-weight:700;margin-bottom:12px">🇪🇺 Sistema de calificación en España y Europa</div>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:12px">
+      En <strong style="color:var(--text)">España</strong> las notas van de 0 a 10. El aprobado oficial es el <strong style="color:var(--gold)">5,0</strong>. Las menciones son: <em>Suspenso</em> (0-4,9), <em>Aprobado</em> (5-6,9), <em>Notable</em> (7-8,9), <em>Sobresaliente</em> (9-10) y la distinción honorífica <em>Matrícula de Honor</em>, reservada a muy pocos estudiantes por asignatura.
     </p>
     <p style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:12px">
-      La fórmula es sencilla: <strong style="color:var(--text)">Nota final = Σ (nota × peso) / Σ pesos</strong>. Por ejemplo, si tienes un examen parcial que vale el 30%, un trabajo que vale el 20% y un examen final que vale el 50%, y has sacado un 7, un 9 y un 6 respectivamente, tu nota final sería (7×0,30) + (9×0,20) + (6×0,50) = 2,1 + 1,8 + 3,0 = <strong style="color:var(--short)">6,9 sobre 10</strong>.
+      El sistema <strong style="color:var(--text)">ECTS europeo</strong> usa letras para facilitar las convalidaciones en Erasmus y programas internacionales. Las calificaciones se asignan por percentil: <strong style="color:var(--gold)">A</strong> (mejor 10%), <strong style="color:var(--gold)">B</strong> (siguiente 25%), <strong style="color:var(--gold)">C</strong> (siguiente 30%), <strong style="color:var(--gold)">D</strong> (siguiente 25%) y <strong style="color:var(--gold)">E</strong> (último 10% que aprueba). Esto significa que una nota de 6 puede aparecer como B en un expediente extranjero si estás entre los mejores de tu grupo.
     </p>
     <p style="font-size:14px;color:var(--text-dim);line-height:1.75">
-      La clave de esta calculadora está en la función inversa: si dejas la nota de una evaluación en blanco, calcula automáticamente <strong style="color:var(--text)">qué nota mínima necesitas en ese porcentaje restante para alcanzar el 5,0</strong> —el aprobado. Esto te permite planificar tu esfuerzo de forma estratégica antes de los exámenes finales.
+      ⚠️ <strong style="color:var(--text)">Atención:</strong> algunas asignaturas exigen una <strong style="color:var(--gold)">nota mínima por sección</strong> (por ejemplo, sacar al menos un 4 en el examen final aunque la media sea 5). Consulta siempre la guía docente de tu asignatura.
     </p>
+  </div>
+
+  <!-- SECCIÓN 5: Estrategia de estudio -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:20px;backdrop-filter:blur(10px)">
+    <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:0.22em;font-weight:700;margin-bottom:12px">⚡ Estrategia de estudio: cómo planificar con la calculadora</div>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:14px">
+      Una calculadora de notas no es solo para el final del semestre. Usarla desde el primer día transforma tu forma de estudiar:
+    </p>
+    <ul style="font-size:14px;color:var(--text-dim);line-height:2;margin-left:20px;margin-bottom:10px">
+      <li><strong style="color:var(--text)">Empieza al inicio del semestre:</strong> introduce los porcentajes de todas las evaluaciones desde el día 1. Así sabrás cuánto vale cada esfuerzo antes de invertir tiempo en él.</li>
+      <li><strong style="color:var(--text)">Prioriza los pesos altos:</strong> un examen final del 60% afecta más a tu nota que tres trabajos del 10% cada uno. Distribuye tu energía en consecuencia.</li>
+      <li><strong style="color:var(--text)">Fija objetivos realistas:</strong> si en el parcial sacaste un 4, calcula qué nota necesitas exactamente en el final. No estudies a ciegas, estudia con un objetivo numérico claro.</li>
+      <li><strong style="color:var(--text)">Aprobado asegurado = planificación del repaso:</strong> si la calculadora te muestra que ya tienes el 5 garantizado independientemente del final, puedes reorganizar tu agenda para otras asignaturas en apuros.</li>
+      <li><strong style="color:var(--text)">Escenarios mejor/peor caso:</strong> introduce la nota mínima que crees sacar y la máxima posible. Gestionar esa horquilla reduce el estrés antes de los exámenes finales.</li>
+    </ul>
+  </div>
+
+  <!-- SECCIÓN 6: FAQ -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:20px;backdrop-filter:blur(10px)">
+    <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:0.22em;font-weight:700;margin-bottom:16px">❓ Preguntas frecuentes</div>
+
+    <div style="margin-bottom:16px">
+      <p style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:5px">¿Qué pasa si la suma de porcentajes supera el 100%?</p>
+      <p style="font-size:14px;color:var(--text-dim);line-height:1.7">La calculadora te avisa con un mensaje de advertencia en naranja indicando el porcentaje total real. Esto te ayuda a detectar errores de configuración antes de confiar en el resultado.</p>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <p style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:5px">¿Puedo añadir varias asignaturas a la vez?</p>
+      <p style="font-size:14px;color:var(--text-dim);line-height:1.7">Sí. Pulsa <strong style="color:var(--gold)">＋ Añadir Asignatura</strong> tantas veces como necesites. Cada asignatura tiene sus propias evaluaciones, porcentajes y resultado independiente. Puedes gestionar toda la matrícula de un semestre en una sola pantalla.</p>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <p style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:5px">¿Se guardan mis datos si cierro el navegador?</p>
+      <p style="font-size:14px;color:var(--text-dim);line-height:1.7">Sí. La aplicación usa <strong style="color:var(--text)">localStorage</strong> del navegador, por lo que tus asignaturas y notas persisten entre sesiones sin necesidad de crear una cuenta ni conectarte a ningún servidor. Son datos que solo tú puedes ver.</p>
+    </div>
+
+    <div>
+      <p style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:5px">¿El aprobado es siempre un 5?</p>
+      <p style="font-size:14px;color:var(--text-dim);line-height:1.7">En el sistema educativo español el estándar es <strong style="color:var(--gold)">5,0 sobre 10</strong>. Sin embargo, algunas asignaturas (especialmente en ingeniería, medicina o derecho) pueden requerir mínimos distintos por sección o rondas de evaluación continua. Comprueba siempre la guía docente oficial de cada asignatura en tu campus virtual.</p>
+    </div>
   </div>
 
   <!-- FOOTER -->
