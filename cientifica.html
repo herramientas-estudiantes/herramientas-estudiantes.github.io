@@ -301,13 +301,85 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- SEO -->
+  <!-- SEO EDUCATIVO -->
+
+  <!-- Intro -->
   <div class="seo-card">
-    <div class="seo-tag">🎓 Calculadoras científicas en el ámbito académico</div>
-    <p class="seo-p">Una <strong>calculadora científica</strong> es una herramienta imprescindible para cualquier estudiante de ciencias, ingeniería, matemáticas o economía. A diferencia de una calculadora básica, incorpora funciones trigonométricas (<strong>seno, coseno, tangente</strong> y sus inversas), funciones logarítmicas (<strong>logaritmo decimal</strong> en base 10 y <strong>logaritmo natural</strong> o neperiano en base e), potencias, raíces y constantes fundamentales como π (pi) y e (número de Euler). Estas operaciones aparecen constantemente en física, química, estadística y álgebra lineal.</p>
-    <p class="seo-p">El <strong>modo DEG / RAD</strong> es uno de los errores más comunes entre estudiantes: determina la unidad angular que usan las funciones trigonométricas. En modo <strong>DEG</strong> (grados sexagesimales), un ángulo recto es 90°, lo que es intuitivo para geometría clásica. En modo <strong>RAD</strong> (radianes), un ángulo recto es π/2 ≈ 1.5708, el estándar en matemáticas avanzadas y cálculo. La función <strong>ANS</strong> permite reutilizar el resultado anterior como operando de la siguiente operación, evitando reescribir resultados intermedios y reduciendo errores de transcripción en cálculos encadenados.</p>
+    <div class="seo-tag">🎓 Guía completa · Calculadora Científica Online</div>
+    <p class="seo-p">Una <strong>calculadora científica</strong> va mucho más allá de sumar y restar. Integra funciones trigonométricas, logaritmos, potencias, raíces, factoriales y constantes físico-matemáticas que aparecen a diario en física, química, ingeniería y estadística universitaria. Si estás en la carrera y necesitas resolver un problema de óptica, calcular el pH de una solución ácida o contar combinaciones para un examen de probabilidad, esta herramienta lo hace en segundos — directamente desde el navegador, sin instalar nada.</p>
+    <p class="seo-p">A lo largo de esta guía aprenderás <strong>qué hace cada función</strong>, cuándo usarla, y cómo evitar los errores más frecuentes que cometen los estudiantes (spoiler: el modo DEG/RAD es el culpable número uno de resultados incorrectos en trigonometría).</p>
   </div>
 
+  <!-- Trigonometría -->
+  <div class="seo-card">
+    <div class="seo-tag">📐 Funciones trigonométricas — seno, coseno y tangente</div>
+    <p class="seo-p"><strong>sin, cos y tan</strong> se definen a partir del triángulo rectángulo y del círculo unitario. Dado un ángulo θ: <em>sin(θ) = opuesto/hipotenusa</em>, <em>cos(θ) = adyacente/hipotenusa</em> y <em>tan(θ) = sin(θ)/cos(θ)</em>. Dominar estos valores de memoria acelera cualquier examen:</p>
+    <div style="background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:12px;color:var(--focus);line-height:1.8">
+      sin(0°)=0 &nbsp;·&nbsp; sin(30°)=0.5 &nbsp;·&nbsp; sin(45°)≈0.707 &nbsp;·&nbsp; sin(60°)≈0.866 &nbsp;·&nbsp; sin(90°)=1<br>
+      cos(θ) = sin(90°−θ) &nbsp;→&nbsp; cos(0°)=1, cos(90°)=0<br>
+      tan(90°) = indefinida &nbsp;·&nbsp; tan(45°)=1
+    </div>
+    <p class="seo-p">⚠️ <strong>Error clásico:</strong> si la calculadora está en modo RAD y escribes sin(90), obtendrás ≈0.894 en lugar de 1. Comprueba siempre el indicador DEG/RAD antes de cualquier cálculo trigonométrico. Las <strong>funciones inversas</strong> (sin⁻¹, cos⁻¹, tan⁻¹) te devuelven el ángulo a partir de una razón: arcsin(0.5) = 30° — imprescindibles para encontrar ángulos en triángulos oblicuos y problemas de vectores.</p>
+  </div>
+
+  <!-- Logaritmos -->
+  <div class="seo-card">
+    <div class="seo-tag">📊 Logaritmos y exponenciales — ln vs log</div>
+    <p class="seo-p">El <strong>logaritmo</strong> es la operación inversa a la potencia: si 2³ = 8, entonces log₂(8) = 3. Esta calculadora ofrece dos bases esenciales:</p>
+    <div style="background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:12px;color:var(--focus);line-height:1.8">
+      ln(x)  → base e ≈ 2.71828 &nbsp;·&nbsp; usado en física, biología y finanzas<br>
+      log(x) → base 10 &nbsp;·&nbsp; usado en decibelios (dB), pH y escala Richter<br>
+      Cambio de base: log₂(x) = ln(x) / ln(2)<br>
+      Propiedades: ln(a·b)=ln(a)+ln(b) &nbsp;·&nbsp; ln(aⁿ)=n·ln(a) &nbsp;·&nbsp; ln(e)=1
+    </div>
+    <p class="seo-p"><strong>Ejemplo práctico — pH:</strong> pH = −log₁₀[H⁺]. Si una solución tiene pH = 3, entonces [H⁺] = 10⁻³ = 0.001 mol/L. Escríbelo en la calculadora como <code style="color:var(--focus)">10^(-3)</code> y obtendrás el resultado al instante. En economía, la fórmula de interés compuesto continuo usa <strong>e^(r·t)</strong>: si inviertes al 5 % anual durante 10 años, el capital crece por un factor de e^0.5 ≈ 1.6487.</p>
+  </div>
+
+  <!-- Potencias y raíces -->
+  <div class="seo-card">
+    <div class="seo-tag">⚡ Potencias, raíces y notación científica</div>
+    <p class="seo-p">Las <strong>reglas de potencias</strong> son la base del álgebra universitaria. Recuérdalas y aplícalas directamente aquí:</p>
+    <div style="background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:12px;color:var(--focus);line-height:1.8">
+      x⁰ = 1 &nbsp;(para todo x ≠ 0)&nbsp;·&nbsp; x⁻ⁿ = 1/xⁿ<br>
+      x^(1/n) = raíz n-ésima de x &nbsp;·&nbsp; (xᵃ)ᵇ = x^(a·b)<br>
+      Notación científica: 6.022×10²³ → escribe 6.022E23 en la calculadora
+    </div>
+    <p class="seo-p">Cuidado con la raíz cuadrada: <strong>√(x²) = |x|</strong>, no siempre x. Si x = −5, √(25) = 5, no −5. Además, √(−4) no existe en los reales — la calculadora mostrará <em>Math Error</em>, indicando que el resultado es un número imaginario fuera del dominio real.</p>
+  </div>
+
+  <!-- Combinatoria -->
+  <div class="seo-card">
+    <div class="seo-tag">🎲 Combinatoria — permutaciones, combinaciones y factorial</div>
+    <p class="seo-p">La combinatoria cuenta formas de organizar o seleccionar elementos. La clave está en si <strong>el orden importa o no</strong>:</p>
+    <div style="background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-family:'Orbitron',monospace;font-size:12px;color:var(--focus);line-height:1.8">
+      n! = 1×2×3×…×n &nbsp;·&nbsp; 0! = 1 (por definición) &nbsp;·&nbsp; 10! = 3,628,800<br>
+      Permutaciones nPr = n!/(n−r)!  → orden SÍ importa<br>
+      Combinaciones nCr = n!/(r!·(n−r)!) → orden NO importa<br>
+      Ejemplo: 3 de 10 estudiantes en podio → 10P3=720 &nbsp;|&nbsp; 10C3=120
+    </div>
+    <p class="seo-p">Las combinaciones son fundamentales en <strong>probabilidad</strong>: la probabilidad de sacar 3 ases en una mano de 5 cartas de una baraja de 52 usa nCr en el numerador y denominador. El <strong>teorema binomial</strong> también se expresa en términos de combinaciones: (a+b)ⁿ = Σ C(n,k)·aᵏ·bⁿ⁻ᵏ.</p>
+  </div>
+
+  <!-- Guía paso a paso -->
+  <div class="seo-card">
+    <div class="seo-tag">🚀 Cómo usar esta calculadora científica — 5 consejos clave</div>
+    <p class="seo-p" style="margin-bottom:8px"><strong>1. Verifica el modo angular antes de cualquier cálculo trigonométrico.</strong> Pulsa el botón DEG/RAD hasta que aparezca el modo correcto. La mayoría de los problemas de física y geometría usan grados; el cálculo avanzado y la física ondulatoria usan radianes.</p>
+    <p class="seo-p" style="margin-bottom:8px"><strong>2. Distingue ln de log.</strong> En esta calculadora, <code style="color:var(--focus)">ln(x)</code> es el logaritmo natural (base e) y <code style="color:var(--focus)">log(x)</code> es el logaritmo decimal (base 10). Confundirlos es un error muy común en química (pH) y en la fórmula de la energía de enlace.</p>
+    <p class="seo-p" style="margin-bottom:8px"><strong>3. Usa paréntesis generosamente.</strong> Para calcular e^(−1.5), escribe <code style="color:var(--focus)">e^(-1.5)</code> con paréntesis alrededor del exponente. Sin ellos, la calculadora podría interpretar solo el −1 como exponente.</p>
+    <p class="seo-p" style="margin-bottom:8px"><strong>4. Aprovecha el botón ANS.</strong> Después de presionar =, el resultado queda guardado. Pulsa ANS para reutilizarlo en la siguiente operación — ideal para cálculos en cadena donde cada paso depende del anterior.</p>
+    <p class="seo-p"><strong>5. Si aparece "Math Error" o "NaN", revisa el dominio.</strong> ln(x) y log(x) no están definidos para x ≤ 0. sqrt(x) solo es real para x ≥ 0. arcsin y arccos solo aceptan valores entre −1 y 1.</p>
+  </div>
+
+  <!-- FAQ -->
+  <div class="seo-card">
+    <div class="seo-tag">❓ Preguntas frecuentes (FAQ)</div>
+    <p class="seo-p"><strong>¿Por qué sin(90) no me da 1?</strong><br>Porque la calculadora está en modo RAD. En radianes, 90 no es un ángulo recto — lo es π/2 ≈ 1.5708. Cambia a modo DEG o escribe sin(π/2) en modo RAD para obtener 1.</p>
+    <p class="seo-p"><strong>¿Cuál es la diferencia entre ln y log?</strong><br><code style="color:var(--focus)">ln(x)</code> usa base e (≈2.718); <code style="color:var(--focus)">log(x)</code> usa base 10. Para convertir: log₁₀(x) = ln(x)/ln(10) ≈ ln(x)/2.3026. Usa ln en física y biología; usa log en escalas como pH, dB o la magnitud de un terremoto.</p>
+    <p class="seo-p"><strong>¿Por qué sqrt(−1) da error?</strong><br>La raíz cuadrada de un número negativo produce un número imaginario (i), que no existe en el conjunto de los reales. Esta calculadora opera en ℝ, por lo que el resultado es <em>Math Error</em>. Para trabajar con números complejos necesitarías una herramienta especializada.</p>
+    <p class="seo-p"><strong>¿Cómo calculo e^x?</strong><br>Pulsa la constante <code style="color:var(--focus)">e</code> seguida del operador de potencia <code style="color:var(--focus)">^</code> y el exponente: por ejemplo <code style="color:var(--focus)">e^(2)</code> = 7.389. Alternativamente, puedes escribirlo como <code style="color:var(--focus)">2.71828^(2)</code> aunque es menos preciso que usar la constante e incorporada.</p>
+  </div>
+
+  <!-- Footer -->
   <div style="text-align:center;padding:24px 0 0;border-top:1px solid var(--border)">
     <a href="toolkit.html" style="color:var(--text-faint);font-size:11px;text-decoration:none;margin:0 10px">← Volver al Toolkit</a>
     <a href="index.html"   style="color:var(--text-faint);font-size:11px;text-decoration:none;margin:0 10px">⏱ Timer</a>
