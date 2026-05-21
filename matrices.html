@@ -349,11 +349,94 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- SEO -->
+  <!-- SEO EDUCATIVO -->
   <div class="seo-card">
-    <div class="seo-tag">📐 Reglas matemáticas de la multiplicación de matrices</div>
-    <p class="seo-p">La multiplicación de matrices es una operación fundamental en álgebra lineal con una regla de compatibilidad estricta: <strong>solo se puede multiplicar A × B si el número de columnas de A es igual al número de filas de B</strong>. Si A tiene dimensión m×n y B tiene dimensión n×p, el resultado C tendrá dimensión m×p. Esto significa que la multiplicación de matrices no es conmutativa en general: A×B ≠ B×A, e incluso puede darse el caso de que A×B exista pero B×A no.</p>
-    <p class="seo-p">Cada elemento <strong>C[i][j]</strong> de la matriz resultado se calcula como el <strong>producto escalar</strong> de la fila i de A por la columna j de B: se multiplican los elementos correspondientes y se suman todos los productos. Formalmente: C[i][j] = Σ A[i][k] × B[k][j] para k de 1 a n. Esta operación aparece constantemente en informática (transformaciones 3D, redes neuronales), física (mecánica cuántica, relatividad) e ingeniería (sistemas de control, circuitos), lo que la convierte en una de las operaciones matemáticas más importantes que aprenderás en tu carrera.</p>
+
+    <!-- 1. QUÉ ES UNA MATRIZ -->
+    <div class="seo-tag" style="color:var(--long)">📐 ¿Qué es una matriz? Conceptos fundamentales</div>
+    <p class="seo-p">Una <strong>matriz</strong> es una tabla rectangular de números organizada en <strong>filas</strong> y <strong>columnas</strong>. Se denota como A<sub>m×n</sub>, donde <em>m</em> es el número de filas y <em>n</em> el de columnas. Cada elemento se identifica por su posición: A[i][j] es el valor de la fila <em>i</em> y la columna <em>j</em>. Existen varios tipos especiales con propiedades únicas: la <strong>matriz cuadrada</strong> (m = n), la <strong>matriz identidad</strong> (I, diagonal de unos y resto de ceros, elemento neutro de la multiplicación), la <strong>matriz nula</strong> (todos los elementos son cero), las <strong>matrices triangulares</strong> (superior o inferior) y la <strong>matriz diagonal</strong> (solo tiene valores en la diagonal principal).</p>
+    <p class="seo-p">Las matrices aparecen en prácticamente todos los campos del conocimiento moderno. En <strong>informática</strong> se utilizan para representar imágenes digitales (cada píxel es una celda), renderizar gráficos 3D y entrenar redes neuronales. El algoritmo <strong>PageRank de Google</strong> modela la web como una matriz estocástica gigante. En <strong>robótica</strong> las matrices de rotación describen la orientación de un brazo mecánico en el espacio. En <strong>física</strong> son imprescindibles en mecánica cuántica y relatividad general. En <strong>economía</strong>, los modelos de Leontief de input-output representan las relaciones entre sectores productivos mediante matrices. Dominar las matrices es una de las inversiones de aprendizaje con mayor retorno en cualquier carrera técnica o científica.</p>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:18px 0">
+
+    <!-- 2. REGLA DE COMPATIBILIDAD -->
+    <div class="seo-tag" style="color:var(--long)">🔗 Regla de compatibilidad para multiplicar matrices</div>
+    <p class="seo-p">La multiplicación de matrices tiene una <strong>condición estricta de compatibilidad</strong>: solo es posible calcular A × B si el número de <strong>columnas de A</strong> es igual al número de <strong>filas de B</strong>. Si A es de dimensión m×n y B es de dimensión n×p, el resultado C tendrá dimensión <strong>m×p</strong>. El número «n» compartido desaparece en el resultado; lo que permanece son las dimensiones «externas» (m filas de A y p columnas de B).</p>
+    <div style="background:rgba(176,106,255,0.07);border:1px solid rgba(176,106,255,0.2);border-radius:10px;padding:12px 16px;margin-bottom:12px;font-family:'Orbitron',monospace;font-size:12px;color:var(--long);line-height:1.7">
+      Ejemplo visual de dimensiones:<br>
+      A  (2×3)  ×  B  (3×4)  =  C  (2×4)<br>
+      ↑ filas A    ↑ coinciden    ↑ cols B<br>
+      Las dimensiones «internas» (3 = 3) deben coincidir.
+    </div>
+    <p class="seo-p">Una consecuencia crucial: la multiplicación matricial <strong>no es conmutativa</strong>. En general, A×B ≠ B×A. De hecho, si A×B existe (cols A = filas B), puede ocurrir que B×A ni siquiera esté definida. Incluso cuando ambas están definidas y son cuadradas, el resultado suele diferir. Esto distingue a la multiplicación de matrices de la multiplicación de números reales y es fuente de muchos errores en programación y matemáticas aplicadas.</p>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:18px 0">
+
+    <!-- 3. CÓMO SE CALCULA CADA ELEMENTO -->
+    <div class="seo-tag" style="color:var(--long)">🧮 Cómo se calcula cada elemento: el producto escalar</div>
+    <p class="seo-p">Cada celda C[i][j] de la matriz resultado se obtiene tomando la <strong>fila i de A</strong> y la <strong>columna j de B</strong>, multiplicando sus elementos en orden y sumando todos los productos. La fórmula matemática es:</p>
+    <div style="background:rgba(176,106,255,0.07);border:1px solid rgba(176,106,255,0.2);border-radius:10px;padding:12px 16px;margin-bottom:12px;font-family:'Orbitron',monospace;font-size:12px;color:var(--long);line-height:1.7">
+      C[i][j] = Σ  A[i][k] × B[k][j]   (para k = 1 … n)
+    </div>
+    <p class="seo-p">Veamos un ejemplo completo con matrices 2×2. Sean A = [[1,2],[3,4]] y B = [[5,6],[7,8]]:</p>
+    <div style="background:rgba(176,106,255,0.07);border:1px solid rgba(176,106,255,0.2);border-radius:10px;padding:12px 16px;margin-bottom:12px;font-family:'Orbitron',monospace;font-size:12px;color:var(--long);line-height:1.7">
+      C[1][1] = 1×5 + 2×7 =  5 + 14 = <strong style="color:var(--text)">19</strong><br>
+      C[1][2] = 1×6 + 2×8 =  6 + 16 = <strong style="color:var(--text)">22</strong><br>
+      C[2][1] = 3×5 + 4×7 = 15 + 28 = <strong style="color:var(--text)">43</strong><br>
+      C[2][2] = 3×6 + 4×8 = 18 + 32 = <strong style="color:var(--text)">50</strong><br>
+      ──────────────────────────────<br>
+      C  =  [ [19, 22] , [43, 50] ]
+    </div>
+    <p class="seo-p">Como ves, cada elemento requiere <em>n</em> multiplicaciones y <em>n−1</em> sumas. Para una matriz n×n, el coste computacional total es O(n³) operaciones, lo que explica por qué multiplicar matrices muy grandes es costoso en recursos y por qué existen algoritmos especiales como el algoritmo de <strong>Strassen</strong> (O(n^2.807)) para acelerarlo.</p>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:18px 0">
+
+    <!-- 4. PROPIEDADES -->
+    <div class="seo-tag" style="color:var(--long)">📋 Propiedades de la multiplicación matricial</div>
+    <p class="seo-p">La multiplicación de matrices cumple algunas propiedades algebraicas importantes, pero otras que asumimos en los números reales <em>no</em> se cumplen aquí:</p>
+    <div style="background:rgba(176,106,255,0.07);border:1px solid rgba(176,106,255,0.2);border-radius:10px;padding:12px 16px;margin-bottom:12px;font-family:'Orbitron',monospace;font-size:12px;color:var(--long);line-height:1.7">
+      ✅  Asociativa:    (A×B)×C = A×(B×C)<br>
+      ✅  Distributiva:  A×(B+C) = A×B + A×C<br>
+      ✅  Elemento neutro: A×I = I×A = A<br>
+      ❌  NO conmutativa: A×B ≠ B×A  (en general)<br>
+      ⚠️  Divisores de cero: A×B = 0 NO implica A=0 o B=0
+    </div>
+    <p class="seo-p">La existencia de <strong>divisores de cero matriciales</strong> es especialmente sorprendente: puedes tener dos matrices no nulas cuyo producto sí es la matriz cero. Esto tiene implicaciones prácticas profundas en álgebra lineal y en el análisis de sistemas de ecuaciones. La propiedad asociativa, en cambio, es muy útil: nos permite reagrupar productos para optimizar el orden de cálculo y reducir el coste computacional total.</p>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:18px 0">
+
+    <!-- 5. APLICACIONES -->
+    <div class="seo-tag" style="color:var(--long)">🌐 Aplicaciones de las matrices en informática y ciencias</div>
+    <p class="seo-p">Las matrices no son solo un ejercicio académico: impulsan tecnologías que usas a diario:</p>
+    <p class="seo-p">🎮 <strong>Gráficos 3D:</strong> En OpenGL y DirectX, cada transformación geométrica (rotación, escala, traslación) se representa como una matriz 4×4. Renderizar una escena implica multiplicar matrices por cada vértice de cada fotograma, millones de veces por segundo en la GPU.</p>
+    <p class="seo-p">🧠 <strong>Redes neuronales:</strong> Cada capa de una red neuronal aplica una multiplicación matricial: la entrada (vector) se multiplica por la matriz de pesos de la capa. El entrenamiento de modelos como GPT consiste, en esencia, en optimizar matrices mediante gradiente descendente.</p>
+    <p class="seo-p">🔍 <strong>Google PageRank:</strong> La importancia de cada página web se calcula como el vector propio dominante de una enorme matriz estocástica que representa el grafo de enlaces entre páginas. Es álgebra lineal a escala de miles de millones de nodos.</p>
+    <p class="seo-p">🔐 <strong>Criptografía — cifrado de Hill:</strong> Este sistema clásico encripta bloques de texto multiplicando un vector de letras por una matriz clave (módulo 26). La clave secreta es la matriz, y descifrar requiere calcular su inversa modular.</p>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:18px 0">
+
+    <!-- 6. CÓMO USAR LA CALCULADORA -->
+    <div class="seo-tag" style="color:var(--long)">🚀 Cómo usar esta calculadora paso a paso</div>
+    <p class="seo-p">Sacar el máximo partido a esta herramienta es muy sencillo:</p>
+    <p class="seo-p"><strong>① Selecciona las dimensiones de la Matriz A</strong> usando los selectores de filas y columnas situados junto a su nombre. Puedes elegir entre 1 y 7 para cada dimensión.</p>
+    <p class="seo-p"><strong>② Ajusta la Matriz B.</strong> Recuerda que sus filas deben coincidir con las columnas de A para que la operación sea compatible. La insignia central te indicará en tiempo real si las dimensiones son válidas (verde ✓) o incompatibles (rojo ✕).</p>
+    <p class="seo-p"><strong>③ Introduce los coeficientes</strong> en cada celda de la cuadrícula. Puedes usar números decimales. Pulsa Tab o Enter para moverte entre celdas con rapidez.</p>
+    <p class="seo-p"><strong>④ Pulsa «⚡ CALCULAR A × B»</strong> para obtener el resultado. La matriz C aparecerá con una animación suave mostrando cada elemento calculado.</p>
+    <p class="seo-p"><strong>⑤ Pulsa «Ver desarrollo paso a paso»</strong> para desplegar el detalle de cómo se calculó cada celda de C: verás la suma de productos de la fila correspondiente de A por la columna de B, en formato C[i][j] = a×b + c×d + … = resultado.</p>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:18px 0">
+
+    <!-- 7. FAQ -->
+    <div class="seo-tag" style="color:var(--long)">❓ Preguntas frecuentes (FAQ)</div>
+    <p class="seo-p"><strong>¿Qué pasa si las dimensiones de A y B son incompatibles?</strong><br>
+    La insignia central mostrará el badge rojo «✕ Cols A ≠ Filas B» y el botón de calcular se desactivará automáticamente. Ajusta los selectores hasta que las columnas de A coincidan con las filas de B para que la operación sea válida.</p>
+    <p class="seo-p"><strong>¿Cuál es el tamaño máximo que puedo calcular?</strong><br>
+    La calculadora admite matrices de hasta <strong>7×7</strong> para cada operando, lo que equivale a un resultado de hasta 7×7 (49 celdas). Para matrices más grandes en producción se recomienda usar bibliotecas especializadas como NumPy (Python), LAPACK o BLAS.</p>
+    <p class="seo-p"><strong>¿Puedo calcular la inversa de una matriz aquí?</strong><br>
+    Esta herramienta está dedicada exclusivamente a la multiplicación A × B. Para resolver sistemas de ecuaciones lineales (lo que equivale a multiplicar por la inversa) visita nuestra calculadora de <a href="ecuaciones.html" style="color:var(--long);text-decoration:none">sistemas de ecuaciones</a>, que aplica eliminación gaussiana.</p>
+    <p class="seo-p"><strong>¿Una multiplicación 1×1 equivale a una multiplicación de números normales?</strong><br>
+    ¡Exacto! Cuando A y B son matrices 1×1, el resultado es simplemente el producto escalar de sus únicos elementos. Las matrices 1×1 son isomorfas a los números reales respecto a la multiplicación, por lo que la operación se comporta exactamente como una multiplicación ordinaria.</p>
+
   </div>
 
   <div style="text-align:center;padding:24px 0 0;border-top:1px solid var(--border)">
