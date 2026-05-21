@@ -1465,11 +1465,13 @@ body[data-mode="long"]  .btn-play { border-color: var(--long);  background: var(
       </div>
     </div>
     <nav class="nav">
-      <button class="nav-btn" id="btn-stats" onclick="window.location.href='dashboard.html'">📊 <span class="nav-label">Stats</span></button>
-      <button class="nav-btn" id="btn-achs">🏆 <span class="nav-label">Logros</span></button>
-      <button class="nav-btn" id="btn-ranking">🥇 <span class="nav-label">Ranking</span></button>
-      <button class="nav-btn" id="btn-auth">👤 <span class="nav-label">Entrar</span></button>
-      <button class="nav-btn" id="btn-cfg">⚙️ <span class="nav-label">Config</span></button>
+      <button class="nav-btn" id="btn-skills">🧠 <span class="nav-label">Skills</span></button>
+      <button class="nav-btn" id="btn-shop">🛒 <span class="nav-label">Tienda</span></button>
+      <button class="nav-btn" id="btn-league">🏆 <span class="nav-label">Ligas</span></button>
+      <button class="nav-btn" id="btn-stats" onclick="window.location.href='dashboard.html'">📊</button>
+      <button class="nav-btn" id="btn-achs">🏅</button>
+      <button class="nav-btn" id="btn-auth">👤</button>
+      <button class="nav-btn" id="btn-cfg">⚙️</button>
     </nav>
   </header>
 
@@ -1603,15 +1605,29 @@ body[data-mode="long"]  .btn-play { border-color: var(--long);  background: var(
     </div>
   </a>
 
-  <div class="xp-panel">
-    <div class="xp-top">
-      <div class="xp-left">
-        <div class="lvl-badge" id="lvl-badge">LVL 1</div>
-        <div class="lvl-name" id="lvl-name">Estudiante</div>
+  <div style="display:flex; gap:16px; margin-bottom:24px;">
+    <!-- CYBER PET -->
+    <div class="cyber-pet" id="cyber-pet" style="width:80px; background:var(--card); border:1px solid var(--border); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px 4px; box-shadow:0 0 10px rgba(0,255,152,0.05); cursor:pointer;" onclick="openOv('ov-pet')">
+      <div id="pet-face" style="font-family:'Orbitron', monospace; font-size:15px; color:var(--short); font-weight:700; text-shadow:0 0 8px var(--short-d);">[^_^]</div>
+      <div style="width:80%; height:4px; background:var(--bg3); border-radius:2px; margin-top:8px; overflow:hidden;">
+        <div id="pet-energy" style="height:100%; width:100%; background:var(--short); transition:width 0.3s;"></div>
       </div>
-      <div class="xp-count" id="xp-count">0 / 100 XP</div>
     </div>
-    <div class="xp-track"><div class="xp-fill" id="xp-fill" style="width:0%"></div></div>
+    <!-- XP PANEL -->
+    <div class="xp-panel" style="flex:1; margin-bottom:0;">
+      <div class="xp-top">
+        <div class="xp-left">
+          <div class="lvl-badge" id="lvl-badge">LVL 1</div>
+          <div class="lvl-name" id="lvl-name">Estudiante</div>
+        </div>
+        <div class="xp-count">
+          <span style="color:var(--gold); font-size:12px; margin-right:8px; font-weight:700" id="xp-credits">0 ¢</span>
+          <span style="color:var(--long); font-size:12px; margin-right:8px; font-weight:700" id="xp-sp">0 SP</span>
+          <span id="xp-count">0 / 100 XP</span>
+        </div>
+      </div>
+      <div class="xp-track"><div class="xp-fill" id="xp-fill" style="width:0%"></div></div>
+    </div>
   </div>
 
   <div class="stats-row">
@@ -1681,10 +1697,7 @@ body[data-mode="long"]  .btn-play { border-color: var(--long);  background: var(
         Cada cuatro bloques completas un ciclo y te mereces un descanso largo.
       </p>
       <p class="about-p">
-        Lo que diferencia a PomodoroXP de cualquier otro temporizador es su
-        <strong>sistema de gamificación</strong>: cada pomodoro completado te otorga XP,
-        subes de nivel, desbloqueas logros y acumulas rachas de días de estudio consecutivos.
-        Estudiar se convierte en un juego donde tú eres el protagonista.
+        Lo que diferencia a PomodoroXP de cualquier otro temporizador es su <strong>sistema de gamificación avanzado</strong>: cada pomodoro completado no solo te otorga XP para subir de nivel, sino que también recarga la energía de tu <strong>Mascota Virtual (Cyber-Pet)</strong> y te permite ganar <strong>Cyber-Créditos</strong>. Además, al subir de nivel obtendrás Puntos de Habilidad (SP) que puedes gastar en el <strong>Árbol de Habilidades</strong> para desbloquear mejoras, y puedes competir semanalmente en el <strong>Sistema de Ligas</strong>. Estudiar se convierte en un juego de rol donde tú eres el protagonista.
       </p>
     </div>
 
@@ -2244,7 +2257,15 @@ const DEF = {
   weekData: {},
   missionsTotal: 0, missionsDone: 0,    // v1.3 — seguimiento de misiones
   fastestMission: null,                  // v1.3 — { name, pomos, cat }
-  cfg: { focus:25, short:5, long:15, interval:4, sound:true, abreak:false, afocus:false }
+  cfg: { focus:25, short:5, long:15, interval:4, sound:true, abreak:false, afocus:false },
+  // Gamification V3
+  credits: 0,
+  skillPoints: 0,
+  skills: [],
+  inventory: [],
+  activeBoosts: [],
+  pet: { energy: 100, lastFed: null },
+  league: { tier: 0, weekScore: 0, rivals: [] }
 };
 
 let S = loadState();
@@ -2258,9 +2279,29 @@ function loadState() {
       const p = JSON.parse(raw);
       const today = new Date().toDateString();
       if (p.lastStudyDate && p.lastStudyDate !== today) {
+        
+        // V3: Pet Energy decay
+        const last = new Date(p.lastStudyDate).getTime();
+        const now = new Date(today).getTime();
+        const diffDays = Math.floor((now - last) / (1000 * 60 * 60 * 24));
+        if (p.pet) {
+            p.pet.energy = Math.max(0, p.pet.energy - (diffDays * 25));
+        }
+
         const yest = new Date(); yest.setDate(yest.getDate()-1);
-        if (p.lastStudyDate !== yest.toDateString()) p.streak = 0;
-        p.todayPomos = 0; p.todayFocusSec = 0;
+        if (p.lastStudyDate !== yest.toDateString()) {
+          // V3: Streak Protector check
+          if (p.inventory && p.inventory.includes('streak_protector')) {
+             p.inventory = p.inventory.filter(i => i !== 'streak_protector');
+             p.lastStudyDate = yest.toDateString(); // Protect!
+          } else {
+             p.streak = 0;
+          }
+        }
+        
+        if (p.lastStudyDate === yest.toDateString()) {
+           p.todayPomos = 0; p.todayFocusSec = 0;
+        }
       }
       p.status         = 'idle';
       p.mode           = 'focus';
@@ -2270,13 +2311,20 @@ function loadState() {
       p.unlocked       = p.unlocked       || [];
       p.cyclePos       = p.cyclePos       || 0;
       p.weekData       = p.weekData       || {};
-      // v1.3 new fields — graceful defaults
       p.shortBreakSec  = p.shortBreakSec  || 0;
       p.longBreakSec   = p.longBreakSec   || 0;
       p.maxStreak      = p.maxStreak      || p.streak || 0;
       p.missionsTotal  = p.missionsTotal  || 0;
       p.missionsDone   = p.missionsDone   || 0;
       p.fastestMission = p.fastestMission || null;
+      // Gamification V3
+      p.credits        = p.credits || 0;
+      p.skillPoints    = p.skillPoints || 0;
+      p.skills         = p.skills || [];
+      p.inventory      = p.inventory || [];
+      p.activeBoosts   = [];
+      p.pet            = p.pet || { energy: 100, lastFed: today };
+      p.league         = p.league || { tier: 0, weekScore: 0, rivals: [] };
       return p;
     }
   } catch(e){}
@@ -2413,7 +2461,19 @@ function onComplete(natural = true) {
       if (S.streak > (S.maxStreak || 0)) S.maxStreak = S.streak;
 
       sfxComplete();
-      addXP(50, `+50 XP — Pomodoro completado 🍅`);
+      
+      let xpGained = 50;
+      // V3: Skill & Boost checks
+      if (S.skills.includes('t3a_xp')) xpGained += 15;
+      if (S.activeBoosts.includes('double_xp')) xpGained *= 2;
+      
+      addXP(xpGained, `+${xpGained} XP — Pomodoro completado 🍅`);
+      
+      // V3: Credits and Pet and League
+      S.credits += 50;
+      S.pet.energy = Math.min(100, S.pet.energy + 20);
+      S.league.weekScore += xpGained;
+      updatePetUI();
       refreshWeekChart();
 
       // v2.0 — notificación nativa (útil cuando el usuario está en otra pestaña)
@@ -2467,9 +2527,12 @@ function addXP(amt, msg) {
     setTimeout(()=>{
       sfxLevelUp(); spawnParticles();
       toast('t-ach',`¡LEVEL UP! NIVEL ${lvAfter}`,`${lvName(lvAfter)} desbloqueado 🎉`);
+      // V3: Skill Points
+      S.skillPoints += (lvAfter - lvBefore);
       if (lvAfter>=5)  checkAch('level_5');
       if (lvAfter>=10) checkAch('level_10');
       if (lvAfter>=25) checkAch('level_25');
+      refreshXP(); // Refresh SP display
     }, 900);
   }
   refreshXP(); save();
@@ -2539,6 +2602,8 @@ function refreshXP() {
   const { lv, inLv, need, pct } = xpProgress(S.xp);
   document.getElementById('lvl-badge').textContent = `LVL ${lv}`;
   document.getElementById('lvl-name').textContent  = lvName(lv);
+  document.getElementById('xp-credits').textContent = `${S.credits} ¢`;
+  document.getElementById('xp-sp').textContent = `${S.skillPoints} SP`;
   document.getElementById('xp-count').textContent  = `${inLv} / ${need} XP`;
   document.getElementById('xp-fill').style.width   = `${pct*100}%`;
 }
@@ -3431,5 +3496,6 @@ console.log('%cTimer fix + Dashboard real data + Firebase sync ⚡','color:#5c78
   <div class="lofi-footer">Volumen ajustable en el reproductor · YouTube</div>
 </div>
 
+<script src="gamification.js"></script>
 </body>
 </html>
