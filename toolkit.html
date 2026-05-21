@@ -178,7 +178,7 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
 ══════════════════════════════════════════════════════════════ */
 .widgets-bar {
   display:grid;
-  grid-template-columns:auto auto 1fr;
+  grid-template-columns:auto auto auto 1fr;
   gap:14px;
   align-items:stretch;
 }
@@ -228,6 +228,7 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
 
 /* Colores de hover por bloque */
 .wb-tools .wt:hover    { border-color:var(--long);  box-shadow:0 0 22px rgba(176,106,255,.3), 0 6px 20px rgba(0,0,0,.4); color:var(--long); }
+.wb-guides .wt:hover   { border-color:var(--short); box-shadow:0 0 22px rgba(0,255,152,.25), 0 6px 20px rgba(0,0,0,.4); color:var(--short); }
 .wb-ext .wt:hover      { border-color:var(--focus); box-shadow:0 0 22px rgba(0,212,255,.25), 0 6px 20px rgba(0,0,0,.4); color:var(--focus); }
 .wb-soon .wt           { opacity:.45; pointer-events:none; cursor:default; }
 
@@ -429,6 +430,20 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
         <a class="wt" href="matrices.html">
           <span class="wt-icon">&#128290;</span>
           <span class="wt-name">Matrices</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- BLOQUE GUÍAS -->
+    <div class="widget-block wb-guides">
+      <div class="wb-label">
+        <span class="wb-label-dot" style="background:var(--short)"></span>
+        Recursos
+      </div>
+      <div class="widgets-row">
+        <a class="wt" href="guias.html">
+          <span class="wt-icon">&#128218;</span>
+          <span class="wt-name">Guías de Estudio</span>
         </a>
       </div>
     </div>
