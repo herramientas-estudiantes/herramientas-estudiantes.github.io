@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#04060d">
-  <title>Student Toolkit v2.2 — PomodoroXP</title>
+  <title>Student Toolkit v2.3 — PomodoroXP</title>
   <meta name="description" content="Centro de mando para estudiantes: calculadoras, generador APA, estadística, ecuaciones, matrices y más.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,7 +63,7 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
 ══════════════════════════════════════════════════════════════ */
 .kings-row {
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:1fr 1fr 1fr;
   gap:16px;
   margin-bottom:16px;
 }
@@ -184,6 +184,14 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
 .king-apa .king-glow { background:radial-gradient(ellipse at top right,rgba(0,212,255,.14),transparent 55%); }
 .king-apa .king-cta  { background:rgba(0,212,255,.13); border:1.5px solid rgba(0,212,255,.45); color:var(--focus); }
 .king-apa .king-cta:hover { background:rgba(0,212,255,.28); box-shadow:0 0 30px rgba(0,212,255,.35); transform:translateY(-2px); }
+
+/* GREEN — PDF */
+.king-pdf  { border-color:rgba(0,255,152,.22); }
+.king-pdf .king-bg   { background:linear-gradient(135deg,#001a0a,#000d06,#002410,#000a05,#001e0c); }
+.king-pdf:hover      { border-color:var(--short); box-shadow:0 0 80px rgba(0,255,152,.3), 0 0 160px rgba(0,255,152,.12), inset 0 0 80px rgba(0,255,152,.04); }
+.king-pdf .king-glow { background:radial-gradient(ellipse at bottom left,rgba(0,255,152,.14),transparent 55%); }
+.king-pdf .king-cta  { background:rgba(0,255,152,.13); border:1.5px solid rgba(0,255,152,.45); color:var(--short); }
+.king-pdf .king-cta:hover { background:rgba(0,255,152,.28); box-shadow:0 0 30px rgba(0,255,152,.35); transform:translateY(-2px); }
 
 /* ══════════════════════════════════════════════════════════════
    ZONA INFERIOR — BARRA DE WIDGETS
@@ -338,6 +346,9 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
   .widgets-bar { grid-template-columns:1fr; }
   .king-title { font-size:28px; }
 }
+@media(min-width:901px) and (max-width:1100px) {
+  .kings-row { grid-template-columns:1fr 1fr; }
+}
 @media(max-width:600px) {
   .page { padding:16px 12px 80px; }
   .topbar-page, .topbar-badge { display:none; }
@@ -367,7 +378,7 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
   </div>
   <div class="topbar-right">
     <button class="help-btn" id="btn-help" title="Ayuda">?</button>
-    <span class="topbar-badge">v2.2</span>
+    <span class="topbar-badge">v2.3</span>
     <a href="index.html" class="topbar-back">&#8592; Timer</a>
   </div>
 </nav>
@@ -427,6 +438,20 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
       </div>
     </a>
 
+    <!-- REY 3 — ORGANIZADOR PDF (VERDE) -->
+    <a class="king king-pdf" href="pdf.html">
+      <div class="king-bg"></div>
+      <div class="king-glass"></div>
+      <div class="king-icon">📄</div>
+      <div class="king-glow"></div>
+      <div class="king-content">
+        <div class="king-tag" style="color:var(--short)">🆕 Sin límites · Privado</div>
+        <div class="king-title" style="color:var(--short)">Organizador<br>de PDF</div>
+        <div class="king-desc">Reordena, rota, elimina y duplica páginas de cualquier PDF. 100% en tu navegador, sin límite de peso ni de usos diarios.</div>
+        <span class="king-cta">Abrir herramienta →</span>
+      </div>
+    </a>
+
   </div><!-- /.kings-row -->
 
   <!-- ══════════════════════════════
@@ -474,6 +499,10 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
         <a class="wt" href="guias.html">
           <span class="wt-icon">&#128218;</span>
           <span class="wt-name">Guías de Estudio</span>
+        </a>
+        <a class="wt" href="pdf.html" style="border-color:rgba(0,255,152,.15)">
+          <span class="wt-icon">✂️</span>
+          <span class="wt-name">PDF Tool</span>
         </a>
       </div>
     </div>
@@ -538,7 +567,7 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
   <!-- FOOTER -->
   <div class="tk-footer">
     <div style="font-family:'Orbitron',monospace;font-size:12px;color:var(--focus);margin-bottom:5px">&#127813; PomodoroXP</div>
-    <div style="margin-bottom:10px;font-size:10px">Student Toolkit &middot; v2.2</div>
+    <div style="margin-bottom:10px;font-size:10px">Student Toolkit &middot; v2.3</div>
     <a href="index.html">&#9203; Timer</a>
     <a href="dashboard.html">&#128202; Dashboard</a>
     <a href="privacy.html">Privacidad</a>
