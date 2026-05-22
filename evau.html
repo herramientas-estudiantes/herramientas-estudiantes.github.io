@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9027862604686644" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Nota Selectividad EvAU 2026 — Calcula tu nota de admisión</title>
+  <meta name="description" content="Calcula tu nota de Selectividad (EvAU/EBAU) gratis. Introduce tus notas de Bachillerato, fase general y fase específica con ponderaciones para saber tu nota de admisión sobre 14. Todas las comunidades autónomas.">
+  <meta name="keywords" content="calculadora evau, calcular nota selectividad, nota de admision, ponderaciones evau 2026, calculadora selectividad, nota de corte, ebau, pau, fase especifica, bachillerato">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════════════════════════════
+   VARIABLES
+══════════════════════════════════════════════════════════════ */
+:root {
+  --bg:        #04060d;
+  --bg2:       #070c18;
+  --bg3:       #0c1425;
+  --card:      rgba(8,14,28,0.88);
+  --border:    rgba(255,107,53,0.10);
+  --border-h:  rgba(255,107,53,0.35);
+  --accent:    #ff6b35;
+  --accent-d:  rgba(255,107,53,0.13);
+  --accent-glow: rgba(255,107,53,0.25);
+  --green:     #00ff98;
+  --green-d:   rgba(0,255,152,0.12);
+  --cyan:      #00d4ff;
+  --cyan-d:    rgba(0,212,255,0.12);
+  --red:       #ff4757;
+  --red-d:     rgba(255,71,87,0.12);
+  --gold:      #ffd600;
+  --gold-d:    rgba(255,214,0,0.12);
+  --text:      #dce8f8;
+  --text-dim:  #5c78a8;
+  --text-faint:#2a3a5a;
+  --radius:    14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ══ BACKGROUND ══ */
+.bg-grid {
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,107,53,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,107,53,0.018) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none; z-index: 0;
+}
+.bg-orb {
+  position: fixed; pointer-events: none; z-index: 0;
+  border-radius: 50%; filter: blur(100px);
+  animation: orb-float 12s ease-in-out infinite;
+}
+.bg-orb-1 {
+  width: 600px; height: 600px; top: -200px; left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(255,107,53,0.07) 0%, transparent 70%);
+}
+.bg-orb-2 {
+  width: 400px; height: 400px; bottom: 5%; right: -100px;
+  background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 70%);
+  animation-delay: 4s;
+}
+.bg-orb-3 {
+  width: 350px; height: 350px; top: 40%; left: -80px;
+  background: radial-gradient(circle, rgba(255,214,0,0.04) 0%, transparent 70%);
+  animation-delay: 7s;
+}
+@keyframes orb-float {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.15) translateY(-25px); }
+}
+
+/* ══ TOPBAR ══ */
+.topbar {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(4,6,13,0.95);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px; height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.topbar-left { display: flex; align-items: center; gap: 16px; }
+.topbar-logo {
+  font-family: 'Orbitron', monospace;
+  font-size: 15px; font-weight: 900;
+  letter-spacing: 0.1em;
+  background: linear-gradient(135deg, var(--cyan) 0%, #fff 70%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; text-decoration: none;
+}
+.topbar-sep { color: var(--text-faint); font-size: 18px; }
+.topbar-page { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; }
+.topbar-back {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--accent-d); border: 1px solid var(--accent);
+  color: var(--accent); padding: 7px 14px; border-radius: 9px;
+  font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600;
+  text-decoration: none; transition: all 0.22s; letter-spacing: 0.06em;
+}
+.topbar-back:hover { background: rgba(255,107,53,0.24); box-shadow: 0 0 14px var(--accent-d); }
+
+/* ══ PAGE ══ */
+.page {
+  position: relative; z-index: 1;
+  max-width: 840px; margin: 0 auto;
+  padding: 36px 24px 80px;
+}
+
+/* ══ HERO ══ */
+.hero { margin-bottom: 32px; text-align: center; }
+.hero-badge {
+  display: inline-block;
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.22em; padding: 6px 16px; border-radius: 20px;
+  background: var(--accent-d); color: var(--accent);
+  border: 1px solid rgba(255,107,53,0.3);
+  margin-bottom: 18px;
+}
+.hero-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(24px, 5vw, 38px);
+  font-weight: 900; color: var(--text);
+  margin-bottom: 14px; line-height: 1.25;
+}
+.hero-title span { color: var(--accent); }
+.hero-sub {
+  font-size: 15px; color: var(--text-dim); line-height: 1.75;
+  max-width: 600px; margin: 0 auto;
+}
+
+/* ══ SELECTOR CCAA ══ */
+.ccaa-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+}
+.section-label {
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.22em; color: var(--accent);
+  margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+}
+.section-label .dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+.ccaa-select {
+  width: 100%;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--text);
+  font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500;
+  padding: 12px 16px; cursor: pointer; transition: border-color 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ff6b35' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+.ccaa-select:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent-d);
+}
+.ccaa-info {
+  margin-top: 12px; font-size: 12px; color: var(--text-dim);
+  line-height: 1.6; padding: 10px 14px;
+  background: rgba(255,107,53,0.05); border-radius: 8px;
+  border: 1px solid rgba(255,107,53,0.1);
+}
+.ccaa-info strong { color: var(--accent); }
+
+/* ══ PHASE CARDS ══ */
+.phase-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: border-color 0.3s;
+}
+.phase-card:hover { border-color: var(--border-h); }
+.phase-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.phase-header-left { display: flex; align-items: center; gap: 12px; }
+.phase-icon {
+  width: 42px; height: 42px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.phase-title-wrap {}
+.phase-tag {
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.2em; margin-bottom: 3px;
+}
+.phase-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 14px; font-weight: 700; color: var(--text);
+}
+.phase-weight {
+  font-family: 'Orbitron', monospace;
+  font-size: 22px; font-weight: 900;
+}
+.phase-body { padding: 20px 24px; }
+
+/* Input rows */
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  gap: 12px; margin-bottom: 12px; align-items: center;
+}
+.input-row.triple {
+  grid-template-columns: 1fr 100px 100px;
+}
+.input-label {
+  font-size: 13px; color: var(--text-dim); font-weight: 500;
+  display: flex; align-items: center; gap: 8px;
+}
+.input-label .emoji { font-size: 16px; }
+.grade-input {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px; color: var(--text);
+  font-family: 'Orbitron', monospace;
+  font-size: 15px; font-weight: 600;
+  padding: 11px 14px; width: 100%;
+  text-align: center; transition: all 0.22s;
+}
+.grade-input:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 14px var(--accent-d);
+}
+.grade-input::placeholder { color: var(--text-faint); font-size: 11px; font-weight: 400; }
+.grade-input.valid { border-color: rgba(0,255,152,0.3); }
+.grade-input.invalid { border-color: rgba(255,71,87,0.3); }
+
+.pond-select {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--text-dim);
+  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600;
+  padding: 11px 12px; width: 100%; cursor: pointer; text-align: center;
+  transition: border-color 0.2s;
+}
+.pond-select:focus { outline: none; border-color: var(--accent); }
+
+/* ══ RESULTS PANEL ══ */
+.results-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(14px);
+  position: relative;
+  overflow: hidden;
+}
+.results-panel::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.6;
+}
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px; margin-bottom: 20px;
+}
+.result-box {
+  text-align: center; padding: 24px 16px;
+  border-radius: 14px; border: 1px solid var(--border);
+  background: var(--bg2);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative; overflow: hidden;
+}
+.result-box::after {
+  content: '';
+  position: absolute; inset: 0; border-radius: inherit;
+  opacity: 0; transition: opacity 0.4s;
+}
+.result-box.active { transform: translateY(-2px); }
+.result-box.green  { border-color: rgba(0,255,152,0.35); }
+.result-box.green::after  { background: radial-gradient(ellipse at center, rgba(0,255,152,0.06), transparent 70%); opacity: 1; }
+.result-box.red    { border-color: rgba(255,71,87,0.35); }
+.result-box.red::after    { background: radial-gradient(ellipse at center, rgba(255,71,87,0.06), transparent 70%); opacity: 1; }
+.result-box.gold   { border-color: rgba(255,214,0,0.35); }
+.result-box.gold::after   { background: radial-gradient(ellipse at center, rgba(255,214,0,0.06), transparent 70%); opacity: 1; }
+
+.result-label {
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.2em; color: var(--text-dim);
+  margin-bottom: 10px; position: relative; z-index: 1;
+}
+.result-value {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(32px, 6vw, 48px);
+  font-weight: 900; line-height: 1;
+  margin-bottom: 6px; position: relative; z-index: 1;
+  transition: color 0.3s;
+}
+.result-max {
+  font-size: 12px; color: var(--text-dim);
+  font-family: 'Orbitron', monospace;
+  position: relative; z-index: 1;
+}
+.result-box.green .result-value { color: var(--green); }
+.result-box.red .result-value   { color: var(--red); }
+.result-box.gold .result-value  { color: var(--gold); }
+
+.result-status {
+  text-align: center; padding: 14px 20px;
+  border-radius: 10px; font-size: 14px; font-weight: 600;
+  transition: all 0.3s;
+}
+.result-status.pass {
+  background: var(--green-d); color: var(--green);
+  border: 1px solid rgba(0,255,152,0.25);
+}
+.result-status.fail {
+  background: var(--red-d); color: var(--red);
+  border: 1px solid rgba(255,71,87,0.25);
+}
+.result-status.pending {
+  background: rgba(255,255,255,0.03); color: var(--text-dim);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ══ SPECIFIC PHASE — ADD BUTTON ══ */
+.btn-add-spec {
+  width: 100%; padding: 12px;
+  background: transparent;
+  border: 1px dashed rgba(255,107,53,0.3);
+  border-radius: 10px; color: var(--accent);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.22s;
+}
+.btn-add-spec:hover {
+  background: var(--accent-d);
+  border-style: solid;
+  box-shadow: 0 0 16px rgba(255,107,53,0.1);
+}
+.spec-row {
+  display: grid;
+  grid-template-columns: 1fr 90px 90px 32px;
+  gap: 10px; margin-bottom: 10px; align-items: center;
+}
+.spec-name-input {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px; padding: 10px 14px; width: 100%;
+  transition: border-color 0.2s;
+}
+.spec-name-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 10px var(--accent-d); }
+.spec-name-input::placeholder { color: var(--text-faint); font-size: 11px; }
+.btn-del-spec {
+  width: 30px; height: 30px; border-radius: 8px;
+  border: 1px solid rgba(255,71,87,0.15);
+  background: transparent; color: var(--text-faint);
+  font-size: 13px; cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.btn-del-spec:hover { border-color: rgba(255,71,87,0.4); color: var(--red); background: rgba(255,71,87,0.08); }
+.spec-headers {
+  display: grid;
+  grid-template-columns: 1fr 90px 90px 32px;
+  gap: 10px; margin-bottom: 8px; padding: 0 2px;
+}
+.spec-headers span {
+  font-size: 9px; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700;
+}
+
+/* ══ BREAKDOWN ══ */
+.breakdown {
+  margin-top: 16px; padding: 16px;
+  background: rgba(255,107,53,0.04);
+  border: 1px solid rgba(255,107,53,0.12);
+  border-radius: 10px;
+}
+.breakdown-title {
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.2em; color: var(--accent); margin-bottom: 12px;
+}
+.breakdown-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-size: 13px;
+}
+.breakdown-row:last-child { border-bottom: none; }
+.breakdown-label { color: var(--text-dim); }
+.breakdown-val {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700; font-size: 14px;
+}
+
+/* ══ AD ══ */
+.ad-evau {
+  width: 100%; min-height: 90px;
+  background: rgba(255,107,53,0.02);
+  border: 1px dashed rgba(255,107,53,0.08);
+  border-radius: var(--radius); margin: 24px 0; overflow: hidden;
+}
+
+/* ══ SCROLLBAR ══ */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 640px) {
+  .page { padding: 24px 14px 60px; }
+  .topbar-page { display: none; }
+  .results-grid { grid-template-columns: 1fr; }
+  .spec-row { grid-template-columns: 1fr 70px 70px 28px; gap: 6px; }
+  .spec-headers { grid-template-columns: 1fr 70px 70px 28px; gap: 6px; }
+  .input-row { grid-template-columns: 1fr 100px; }
+  .input-row.triple { grid-template-columns: 1fr 80px 80px; }
+  .phase-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .result-value { font-size: 36px; }
+}
+</style>
+</head>
+
+<body>
+<div class="bg-grid"></div>
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+
+<!-- ══ TOPBAR ══ -->
+<nav class="topbar">
+  <div class="topbar-left">
+    <a href="index.html" class="topbar-logo">🍅 POMODOROXP</a>
+    <span class="topbar-sep">/</span>
+    <span class="topbar-page">Calculadora EvAU</span>
+  </div>
+  <a href="toolkit.html" class="topbar-back">← Toolkit</a>
+</nav>
+
+<div class="page">
+
+  <!-- ══ HERO ══ -->
+  <div class="hero">
+    <div class="hero-badge">🎓 Selectividad / EvAU / EBAU / PAU</div>
+    <h1 class="hero-title">Calcula tu <span>Nota de Admisión</span></h1>
+    <p class="hero-sub">Introduce tus notas de Bachillerato y Selectividad para saber tu nota de acceso (sobre 10) y tu nota de admisión (sobre 14). Cálculo en tiempo real para todas las comunidades autónomas de España.</p>
+  </div>
+
+  <!-- AD -->
+  <div class="ad-evau">
+    <ins class="adsbygoogle" style="display:block"
+      data-ad-client="ca-pub-9027862604686644"
+      data-ad-slot="auto" data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- ══ RESULTS (top, always visible) ══ -->
+  <div class="results-panel" id="results-panel">
+    <div class="results-grid">
+      <div class="result-box" id="box-acceso">
+        <div class="result-label">Nota de Acceso</div>
+        <div class="result-value" id="val-acceso">—</div>
+        <div class="result-max">/ 10</div>
+      </div>
+      <div class="result-box" id="box-admision">
+        <div class="result-label">Nota de Admisión</div>
+        <div class="result-value" id="val-admision">—</div>
+        <div class="result-max">/ 14</div>
+      </div>
+    </div>
+    <div class="result-status pending" id="result-status">
+      Introduce tus notas para calcular tu resultado
+    </div>
+    <div class="breakdown" id="breakdown" style="display:none">
+      <div class="breakdown-title">📊 Desglose del cálculo</div>
+      <div id="breakdown-content"></div>
+    </div>
+  </div>
+
+  <!-- ══ CCAA SELECTOR ══ -->
+  <div class="ccaa-section">
+    <div class="section-label"><span class="dot"></span> Comunidad Autónoma</div>
+    <select class="ccaa-select" id="ccaa-select">
+      <option value="standard">Andalucía</option>
+      <option value="standard">Aragón</option>
+      <option value="standard">Asturias</option>
+      <option value="cooficial" data-lang="Català">Islas Baleares</option>
+      <option value="standard">Canarias</option>
+      <option value="standard">Cantabria</option>
+      <option value="standard">Castilla-La Mancha</option>
+      <option value="standard">Castilla y León</option>
+      <option value="cooficial" data-lang="Català">Cataluña</option>
+      <option value="standard">Ceuta</option>
+      <option value="cooficial" data-lang="Valencià">Comunitat Valenciana</option>
+      <option value="standard">Extremadura</option>
+      <option value="cooficial" data-lang="Galego">Galicia</option>
+      <option value="standard">La Rioja</option>
+      <option value="standard" selected>Madrid</option>
+      <option value="standard">Melilla</option>
+      <option value="standard">Murcia</option>
+      <option value="standard">Navarra</option>
+      <option value="cooficial" data-lang="Euskera">País Vasco</option>
+    </select>
+    <div class="ccaa-info" id="ccaa-info">
+      Fase general con <strong>4 asignaturas obligatorias</strong>. No se requiere lengua cooficial.
+    </div>
+  </div>
+
+  <!-- ══ PHASE 1: BACHILLERATO ══ -->
+  <div class="phase-card">
+    <div class="phase-header">
+      <div class="phase-header-left">
+        <div class="phase-icon" style="background:var(--gold-d);border:1px solid rgba(255,214,0,0.2)">📚</div>
+        <div class="phase-title-wrap">
+          <div class="phase-tag" style="color:var(--gold)">Paso 1</div>
+          <div class="phase-title">Nota Media de Bachillerato</div>
+        </div>
+      </div>
+      <div class="phase-weight" style="color:var(--gold)">60%</div>
+    </div>
+    <div class="phase-body">
+      <div class="input-row">
+        <div class="input-label"><span class="emoji">🎒</span> Nota media de Bachillerato (5-10)</div>
+        <input class="grade-input" type="number" id="nota-bach" min="5" max="10" step="0.01" placeholder="ej: 7.50" oninput="calculate()">
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PHASE 2: FASE GENERAL ══ -->
+  <div class="phase-card">
+    <div class="phase-header">
+      <div class="phase-header-left">
+        <div class="phase-icon" style="background:var(--accent-d);border:1px solid rgba(255,107,53,0.2)">📝</div>
+        <div class="phase-title-wrap">
+          <div class="phase-tag" style="color:var(--accent)">Paso 2</div>
+          <div class="phase-title">Fase General / Obligatoria</div>
+        </div>
+      </div>
+      <div class="phase-weight" style="color:var(--accent)">40%</div>
+    </div>
+    <div class="phase-body" id="fase-general-body">
+      <div class="input-row">
+        <div class="input-label"><span class="emoji">🇪🇸</span> Lengua Castellana y Literatura II</div>
+        <input class="grade-input gen-input" type="number" id="gen-lengua" min="0" max="10" step="0.01" placeholder="0 – 10" oninput="calculate()">
+      </div>
+      <div class="input-row">
+        <div class="input-label"><span class="emoji">🌍</span> Lengua Extranjera II</div>
+        <input class="grade-input gen-input" type="number" id="gen-idioma" min="0" max="10" step="0.01" placeholder="0 – 10" oninput="calculate()">
+      </div>
+      <div class="input-row">
+        <div class="input-label"><span class="emoji">📜</span> Historia de España / Filosofía</div>
+        <input class="grade-input gen-input" type="number" id="gen-historia" min="0" max="10" step="0.01" placeholder="0 – 10" oninput="calculate()">
+      </div>
+      <div class="input-row">
+        <div class="input-label"><span class="emoji">🔬</span> Asignatura de Modalidad (troncal)</div>
+        <input class="grade-input gen-input" type="number" id="gen-modalidad" min="0" max="10" step="0.01" placeholder="0 – 10" oninput="calculate()">
+      </div>
+      <!-- Co-official language row (hidden by default) -->
+      <div class="input-row" id="row-cooficial" style="display:none">
+        <div class="input-label"><span class="emoji">🗣️</span> <span id="cooficial-label">Lengua Cooficial</span></div>
+        <input class="grade-input gen-input" type="number" id="gen-cooficial" min="0" max="10" step="0.01" placeholder="0 – 10" oninput="calculate()">
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PHASE 3: FASE ESPECÍFICA ══ -->
+  <div class="phase-card">
+    <div class="phase-header">
+      <div class="phase-header-left">
+        <div class="phase-icon" style="background:var(--cyan-d);border:1px solid rgba(0,212,255,0.2)">🚀</div>
+        <div class="phase-title-wrap">
+          <div class="phase-tag" style="color:var(--cyan)">Paso 3 — Opcional</div>
+          <div class="phase-title">Fase Específica / Voluntaria</div>
+        </div>
+      </div>
+      <div class="phase-weight" style="color:var(--cyan)">+4</div>
+    </div>
+    <div class="phase-body">
+      <div style="font-size:12px;color:var(--text-dim);line-height:1.65;margin-bottom:16px;padding:10px 14px;background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.1);border-radius:8px">
+        Añade hasta <strong style="color:var(--cyan)">4 asignaturas</strong> de la fase específica. Solo cuentan las que estén <strong style="color:var(--green)">aprobadas (≥ 5)</strong>. El sistema selecciona automáticamente las <strong style="color:var(--text)">2 mejores combinaciones</strong> que maximicen tu nota de admisión.
+      </div>
+      <div class="spec-headers">
+        <span>Asignatura</span>
+        <span>Nota /10</span>
+        <span>Ponderación</span>
+        <span></span>
+      </div>
+      <div id="spec-list"></div>
+      <button class="btn-add-spec" id="btn-add-spec" onclick="addSpecSubject()">＋ Añadir asignatura específica</button>
+    </div>
+  </div>
+
+  <!-- AD -->
+  <div class="ad-evau">
+    <ins class="adsbygoogle" style="display:block"
+      data-ad-client="ca-pub-9027862604686644"
+      data-ad-slot="auto" data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SEO CONTENT
+  ══════════════════════════════════════════════════════════════ -->
+
+  <!-- SECCIÓN 1: Qué es la EvAU -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:20px;backdrop-filter:blur(10px)">
+    <div style="font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:0.22em;font-weight:700;margin-bottom:12px">🎓 ¿Qué es la EvAU / Selectividad?</div>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:12px">
+      La <strong style="color:var(--text)">Evaluación de Acceso a la Universidad (EvAU)</strong>, también conocida como <strong style="color:var(--text)">Selectividad</strong>, EBAU o PAU según la comunidad autónoma, es la prueba oficial que deben superar los estudiantes de 2.º de Bachillerato en España para acceder a estudios universitarios de grado. Desde la reforma de 2017, sustituye a la antigua PAU y se organiza en dos fases complementarias.
+    </p>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:12px">
+      La <strong style="color:var(--accent)">fase general u obligatoria</strong> evalúa las materias troncales comunes (Lengua Castellana, Lengua Extranjera, Historia de España o Filosofía y una asignatura de modalidad). Es imprescindible superarla para obtener la <strong style="color:var(--text)">nota de acceso</strong> (sobre 10). En las comunidades con lengua cooficial (Cataluña, Galicia, Comunitat Valenciana, País Vasco e Islas Baleares), se añade un quinto examen de la lengua propia.
+    </p>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75">
+      La <strong style="color:var(--cyan)">fase específica o voluntaria</strong> permite al estudiante examinarse de hasta cuatro asignaturas adicionales vinculadas a la rama del conocimiento del grado al que quiere acceder. Las dos mejores notas (aprobadas y con la mayor ponderación) se suman a la nota de acceso para obtener la <strong style="color:var(--text)">nota de admisión</strong> (sobre 14), que es la que se compara con la <em>nota de corte</em> del grado y la universidad deseados.
+    </p>
+  </div>
+
+  <!-- SECCIÓN 2: Cómo se calcula paso a paso -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:20px;backdrop-filter:blur(10px)">
+    <div style="font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:0.22em;font-weight:700;margin-bottom:12px">📐 ¿Cómo se calcula la nota de admisión?</div>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:14px">
+      El cálculo oficial sigue una fórmula estandarizada por el Ministerio de Universidades:
+    </p>
+    <div style="background:rgba(255,107,53,0.06);border:1px solid rgba(255,107,53,0.2);border-radius:10px;padding:16px;margin-bottom:16px;font-family:'Orbitron',monospace;font-size:13px;color:var(--accent);text-align:center;line-height:2">
+      Nota de Acceso = 0,6 × NMB + 0,4 × NME<br>
+      <span style="font-size:11px;color:var(--text-dim)">(NMB = Nota Media Bachillerato · NME = Nota Media EvAU fase general)</span>
+    </div>
+    <div style="background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.18);border-radius:10px;padding:16px;margin-bottom:16px;font-family:'Orbitron',monospace;font-size:13px;color:var(--cyan);text-align:center;line-height:2">
+      Nota de Admisión = Nota de Acceso + a×M1 + b×M2<br>
+      <span style="font-size:11px;color:var(--text-dim)">(a, b = 0,1 o 0,2 · M1, M2 = asignaturas específicas aprobadas ≥ 5)</span>
+    </div>
+    <ol style="font-size:14px;color:var(--text-dim);line-height:2;margin-left:20px;margin-bottom:10px">
+      <li><strong style="color:var(--text)">Nota media de Bachillerato (NMB):</strong> tu expediente de 2 años de Bachillerato, de 5 a 10. Pesa un <strong style="color:var(--gold)">60%</strong> sobre la nota de acceso.</li>
+      <li><strong style="color:var(--text)">Media de la Fase General (NME):</strong> la media aritmética de los 4 (o 5) exámenes obligatorios. Pesa un <strong style="color:var(--accent)">40%</strong>. Condición: la media de la fase general debe ser ≥ 4,0 para poder promediar con Bachillerato.</li>
+      <li><strong style="color:var(--text)">Nota de Acceso ≥ 5,0:</strong> si el resultado es 5 o superior, has superado la Selectividad. Con eso ya puedes acceder a la universidad, aunque la nota de corte de la carrera puede exigir más.</li>
+      <li><strong style="color:var(--text)">Fase Específica:</strong> cada asignatura aprobada (≥ 5) se pondera con un coeficiente de 0,1 o 0,2 según el grado al que apliques. Solo se suman las <strong style="color:var(--cyan)">2 mejores combinaciones</strong>.</li>
+    </ol>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75">
+      <strong style="color:var(--text)">Ejemplo:</strong> un alumno con <strong style="color:var(--gold)">8,5</strong> de Bachillerato y una media de fase general de <strong style="color:var(--accent)">7,0</strong>: Nota de Acceso = 0,6×8,5 + 0,4×7,0 = 5,1 + 2,8 = <strong style="color:var(--green)">7,90</strong>. Si además saca un 9,0 en Biología (pondera 0,2) y un 7,5 en Química (pondera 0,2): Nota de Admisión = 7,90 + 0,2×9,0 + 0,2×7,5 = 7,90 + 1,80 + 1,50 = <strong style="color:var(--green)">11,20 / 14</strong>.
+    </p>
+  </div>
+
+  <!-- SECCIÓN 3: Ponderaciones -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:20px;backdrop-filter:blur(10px)">
+    <div style="font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:0.22em;font-weight:700;margin-bottom:12px">⚖️ ¿Qué son las ponderaciones (0,1 y 0,2)?</div>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:12px">
+      Cada universidad publica una <strong style="color:var(--text)">tabla de ponderaciones</strong> que indica cuánto multiplica cada asignatura de la fase específica según el grado al que quieras acceder. Si una asignatura tiene <strong style="color:var(--accent)">ponderación 0,2</strong>, esa materia está muy vinculada al grado (por ejemplo, Biología para Medicina). Si tiene <strong style="color:var(--text-dim)">ponderación 0,1</strong>, tiene relación pero no es la principal.
+    </p>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:12px">
+      La diferencia entre usar 0,1 y 0,2 es <strong style="color:var(--text)">enorme</strong>. Un 9,0 ponderado a 0,2 suma <strong style="color:var(--green)">+1,8 puntos</strong>, mientras que ese mismo 9,0 ponderado a 0,1 suma solo <strong style="color:var(--gold)">+0,9 puntos</strong>. Por eso es fundamental consultar la tabla de ponderaciones de la universidad y el grado concreto al que quieres aplicar antes de elegir qué asignaturas específicas preparar.
+    </p>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.75">
+      <strong style="color:var(--text)">Consejo estratégico:</strong> si dudas entre dos asignaturas, elige siempre la que tenga <strong style="color:var(--accent)">ponderación 0,2</strong> en tu grado preferido, incluso si crees que sacarás una nota ligeramente menor. Sacar un 7,0 con ponderación 0,2 (+1,4 pts) aporta más que un 9,0 con ponderación 0,1 (+0,9 pts).
+    </p>
+  </div>
+
+  <!-- SECCIÓN 4: Consejos -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:20px;backdrop-filter:blur(10px)">
+    <div style="font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:0.22em;font-weight:700;margin-bottom:12px">💡 Consejos para maximizar tu nota de admisión</div>
+    <ul style="font-size:14px;color:var(--text-dim);line-height:2;margin-left:20px;margin-bottom:10px">
+      <li><strong style="color:var(--text)">Cuida tu Bachillerato:</strong> pesa un 60%. Subir 1 punto de media de Bachillerato equivale a ganar 0,6 puntos directos en tu nota de acceso — es la vía más estable y segura.</li>
+      <li><strong style="color:var(--text)">Elige las específicas con inteligencia:</strong> consulta las tablas de ponderaciones de todas las universidades que te interesen. A veces, una misma asignatura pondera 0,2 en una universidad y 0,1 en otra para el mismo grado.</li>
+      <li><strong style="color:var(--text)">No te conformes con aprobar la fase general:</strong> cada punto extra en la fase general aporta 0,4 puntos a tu nota de acceso. Pasar de un 6 a un 8 son 0,8 puntos más.</li>
+      <li><strong style="color:var(--text)">Las notas de la fase específica caducan:</strong> las calificaciones de la fase voluntaria tienen una validez de <strong style="color:var(--accent)">2 convocatorias (2 años)</strong>. Puedes repetirla para intentar mejorar sin perder la anterior.</li>
+      <li><strong style="color:var(--text)">Simula escenarios:</strong> usa esta calculadora para probar distintas combinaciones de notas antes del examen. Saber que necesitas un 7,5 mínimo en Biología para llegar a la nota de corte de Medicina te da un objetivo concreto.</li>
+    </ul>
+  </div>
+
+  <!-- SECCIÓN 5: FAQ -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:20px;backdrop-filter:blur(10px)">
+    <div style="font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:0.22em;font-weight:700;margin-bottom:16px">❓ Preguntas frecuentes sobre la EvAU</div>
+
+    <div style="margin-bottom:16px">
+      <p style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:5px">¿Qué pasa si suspendo la fase general?</p>
+      <p style="font-size:14px;color:var(--text-dim);line-height:1.7">Si la media de tus exámenes de la fase general es inferior a 4,0, no se puede promediar con la nota de Bachillerato. En este caso, tu nota de acceso queda como <strong style="color:var(--red)">NO APTO</strong> y no podrás matricularte en la universidad en esa convocatoria. Puedes presentarte en la convocatoria extraordinaria (julio) o al año siguiente.</p>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <p style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:5px">¿La nota de Bachillerato puede ser inferior a 5?</p>
+      <p style="font-size:14px;color:var(--text-dim);line-height:1.7">No. Para presentarte a la EvAU necesitas haber aprobado Bachillerato completo, cuya nota mínima es 5,0. Si tu nota de Bachillerato es 5,0 y la media de la fase general es 4,0 (el mínimo), tu nota de acceso sería 0,6×5 + 0,4×4 = 3,0 + 1,6 = <strong style="color:var(--red)">4,60</strong>, que es <strong style="color:var(--red)">insuficiente</strong> (se necesita ≥ 5,0).</p>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <p style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:5px">¿Puedo subir nota repitiendo la EvAU?</p>
+      <p style="font-size:14px;color:var(--text-dim);line-height:1.7">Sí. Puedes volver a presentarte a la fase general o específica en años posteriores. <strong style="color:var(--text)">Siempre se conserva la mejor nota</strong>. No pierdes calificaciones anteriores por volver a examinarte.</p>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <p style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:5px">¿Cuánto tiempo son válidas las notas de la fase específica?</p>
+      <p style="font-size:14px;color:var(--text-dim);line-height:1.7">Las notas de la fase específica tienen una validez de <strong style="color:var(--accent)">dos años</strong> (dos convocatorias de acceso). Si no usas una nota en ese plazo, caduca y deberás repetir el examen. La fase general no caduca mientras tengas la condición de aprobado.</p>
+    </div>
+
+    <div>
+      <p style="font-size:13px;color:var(--text);font-weight:600;margin-bottom:5px">¿La nota de corte es fija cada año?</p>
+      <p style="font-size:14px;color:var(--text-dim);line-height:1.7">No. La nota de corte no es una cifra establecida por la universidad, sino que resulta de la <strong style="color:var(--text)">oferta y la demanda</strong>: es la nota del último alumno admitido en la convocatoria anterior. Si hay más plazas o menos solicitantes, la nota de corte baja; si el grado es más popular, sube. Usa la nota de corte del año anterior como referencia orientativa, no como un muro inamovible.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="text-align:center;padding:24px 0 0;border-top:1px solid var(--border)">
+    <a href="toolkit.html" style="color:var(--text-faint);font-size:11px;text-decoration:none;margin:0 10px">← Volver al Toolkit</a>
+    <a href="index.html"   style="color:var(--text-faint);font-size:11px;text-decoration:none;margin:0 10px">⏱ Timer</a>
+    <a href="privacy.html" style="color:var(--text-faint);font-size:11px;text-decoration:none;margin:0 10px">Privacidad</a>
+  </div>
+
+</div>
+
+<script>
+'use strict';
+
+// ================================================================
+// STATE
+// ================================================================
+let specSubjects = [
+  { name: '', nota: '', pond: '0.2' },
+  { name: '', nota: '', pond: '0.2' }
+];
+
+// ================================================================
+// CCAA SELECTOR
+// ================================================================
+const ccaaSelect = document.getElementById('ccaa-select');
+const ccaaInfo   = document.getElementById('ccaa-info');
+const rowCoof    = document.getElementById('row-cooficial');
+const coofLabel  = document.getElementById('cooficial-label');
+const coofInput  = document.getElementById('gen-cooficial');
+
+ccaaSelect.addEventListener('change', () => {
+  const opt = ccaaSelect.options[ccaaSelect.selectedIndex];
+  const isCooficial = opt.value === 'cooficial';
+  rowCoof.style.display = isCooficial ? '' : 'none';
+  if (isCooficial) {
+    const lang = opt.dataset.lang || 'Lengua Cooficial';
+    coofLabel.textContent = lang + ' y Literatura';
+    ccaaInfo.innerHTML = `Fase general con <strong>5 asignaturas obligatorias</strong> (incluye ${lang}). La media aritmética divide entre 5.`;
+  } else {
+    coofInput.value = '';
+    ccaaInfo.innerHTML = `Fase general con <strong>4 asignaturas obligatorias</strong>. No se requiere lengua cooficial.`;
+  }
+  calculate();
+});
+
+// ================================================================
+// SPECIFIC SUBJECTS
+// ================================================================
+function renderSpec() {
+  const list = document.getElementById('spec-list');
+  list.innerHTML = specSubjects.map((s, i) => `
+    <div class="spec-row">
+      <input class="spec-name-input" type="text" placeholder="Ej: Biología, Física, Dibujo..."
+        value="${escH(s.name)}"
+        oninput="specSubjects[${i}].name=this.value">
+      <input class="grade-input" type="number" min="0" max="10" step="0.01" placeholder="0 – 10"
+        value="${s.nota}"
+        oninput="specSubjects[${i}].nota=this.value;calculate()">
+      <select class="pond-select" onchange="specSubjects[${i}].pond=this.value;calculate()">
+        <option value="0.2" ${s.pond==='0.2'?'selected':''}>× 0,2</option>
+        <option value="0.1" ${s.pond==='0.1'?'selected':''}>× 0,1</option>
+      </select>
+      <button class="btn-del-spec" onclick="delSpecSubject(${i})" title="Eliminar">✕</button>
+    </div>
+  `).join('');
+
+  // Hide add button if already 4
+  document.getElementById('btn-add-spec').style.display = specSubjects.length >= 4 ? 'none' : '';
+}
+
+function addSpecSubject() {
+  if (specSubjects.length >= 4) return;
+  specSubjects.push({ name: '', nota: '', pond: '0.2' });
+  renderSpec();
+}
+
+function delSpecSubject(i) {
+  specSubjects.splice(i, 1);
+  renderSpec();
+  calculate();
+}
+
+function escH(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ================================================================
+// CALCULATION ENGINE
+// ================================================================
+function calculate() {
+  const bach = parseFloat(document.getElementById('nota-bach').value);
+
+  // Gather general phase inputs
+  const genInputs = ['gen-lengua', 'gen-idioma', 'gen-historia', 'gen-modalidad'];
+  const opt = ccaaSelect.options[ccaaSelect.selectedIndex];
+  const isCooficial = opt.value === 'cooficial';
+  if (isCooficial) genInputs.push('gen-cooficial');
+
+  const genNotas = genInputs.map(id => parseFloat(document.getElementById(id).value));
+  const genFilled = genNotas.filter(n => !isNaN(n));
+
+  // Validate inputs visually
+  validateInput('nota-bach', bach, 5, 10);
+  genInputs.forEach(id => {
+    const v = parseFloat(document.getElementById(id).value);
+    validateInput(id, v, 0, 10);
+  });
+
+  const valAcceso   = document.getElementById('val-acceso');
+  const valAdmision = document.getElementById('val-admision');
+  const boxAcceso   = document.getElementById('box-acceso');
+  const boxAdmision = document.getElementById('box-admision');
+  const statusEl    = document.getElementById('result-status');
+  const breakdownEl = document.getElementById('breakdown');
+  const breakdownC  = document.getElementById('breakdown-content');
+
+  // Not enough data
+  if (isNaN(bach) || genFilled.length < genInputs.length) {
+    valAcceso.textContent = '—';
+    valAdmision.textContent = '—';
+    boxAcceso.className = 'result-box';
+    boxAdmision.className = 'result-box';
+    statusEl.className = 'result-status pending';
+    statusEl.textContent = 'Introduce tus notas para calcular tu resultado';
+    breakdownEl.style.display = 'none';
+    return;
+  }
+
+  // Calculate General Phase average
+  const nme = genNotas.reduce((a, b) => a + b, 0) / genNotas.length;
+
+  // Check NME >= 4
+  if (nme < 4) {
+    const notaAcceso = 0.6 * bach + 0.4 * nme;
+    valAcceso.textContent = notaAcceso.toFixed(2);
+    valAdmision.textContent = '—';
+    boxAcceso.className = 'result-box active red';
+    boxAdmision.className = 'result-box';
+    statusEl.className = 'result-status fail';
+    statusEl.innerHTML = `❌ <strong>NO APTO</strong> — La media de la fase general es ${nme.toFixed(2)} (mínimo requerido: 4,00). No se puede promediar con Bachillerato.`;
+    breakdownEl.style.display = 'block';
+    breakdownC.innerHTML = buildBreakdown(bach, nme, null, null, false);
+    return;
+  }
+
+  // Nota de Acceso
+  const notaAcceso = 0.6 * bach + 0.4 * nme;
+  const aprueba = notaAcceso >= 5;
+
+  valAcceso.textContent = notaAcceso.toFixed(2);
+  boxAcceso.className = `result-box active ${aprueba ? 'green' : 'red'}`;
+
+  // Specific phase - calculate best 2
+  const specValid = specSubjects
+    .filter(s => {
+      const n = parseFloat(s.nota);
+      return !isNaN(n) && n >= 5;
+    })
+    .map(s => ({
+      name: s.name || 'Asignatura',
+      nota: parseFloat(s.nota),
+      pond: parseFloat(s.pond),
+      aporte: parseFloat(s.nota) * parseFloat(s.pond)
+    }))
+    .sort((a, b) => b.aporte - a.aporte);
+
+  // Take best 2
+  const best2 = specValid.slice(0, 2);
+  const specBonus = best2.reduce((a, s) => a + s.aporte, 0);
+  const notaAdmision = notaAcceso + specBonus;
+
+  valAdmision.textContent = notaAdmision.toFixed(2);
+
+  if (aprueba) {
+    boxAdmision.className = `result-box active ${notaAdmision >= 10 ? 'gold' : 'green'}`;
+    statusEl.className = 'result-status pass';
+    let statusMsg = `✅ <strong>APTO</strong> — Has superado la Selectividad con ${notaAcceso.toFixed(2)} / 10`;
+    if (specBonus > 0) {
+      statusMsg += `. Con la fase específica: <strong>${notaAdmision.toFixed(2)} / 14</strong>`;
+    }
+    statusEl.innerHTML = statusMsg;
+  } else {
+    boxAdmision.className = 'result-box active red';
+    statusEl.className = 'result-status fail';
+    statusEl.innerHTML = `❌ <strong>NO APTO</strong> — Tu nota de acceso (${notaAcceso.toFixed(2)}) es inferior a 5,00. Necesitas mejorar en Bachillerato y/o la fase general.`;
+  }
+
+  breakdownEl.style.display = 'block';
+  breakdownC.innerHTML = buildBreakdown(bach, nme, notaAcceso, best2, aprueba);
+}
+
+function buildBreakdown(bach, nme, notaAcceso, best2, aprueba) {
+  let html = `
+    <div class="breakdown-row">
+      <span class="breakdown-label">📚 Nota Bachillerato × 0,6</span>
+      <span class="breakdown-val" style="color:var(--gold)">${(bach * 0.6).toFixed(2)}</span>
+    </div>
+    <div class="breakdown-row">
+      <span class="breakdown-label">📝 Media Fase General (${nme.toFixed(2)}) × 0,4</span>
+      <span class="breakdown-val" style="color:var(--accent)">${(nme * 0.4).toFixed(2)}</span>
+    </div>
+  `;
+  if (notaAcceso !== null) {
+    html += `
+    <div class="breakdown-row">
+      <span class="breakdown-label"><strong>Nota de Acceso</strong></span>
+      <span class="breakdown-val" style="color:${aprueba ? 'var(--green)' : 'var(--red)'}">${notaAcceso.toFixed(2)}</span>
+    </div>`;
+  }
+  if (best2 && best2.length > 0) {
+    best2.forEach((s, i) => {
+      html += `
+      <div class="breakdown-row">
+        <span class="breakdown-label">🚀 ${escH(s.name)} (${s.nota.toFixed(1)}) × ${s.pond.toFixed(1)}</span>
+        <span class="breakdown-val" style="color:var(--cyan)">+${s.aporte.toFixed(2)}</span>
+      </div>`;
+    });
+    const total = notaAcceso + best2.reduce((a, s) => a + s.aporte, 0);
+    html += `
+    <div class="breakdown-row" style="border-top:1px solid rgba(255,107,53,0.15);padding-top:10px;margin-top:4px">
+      <span class="breakdown-label"><strong>🎯 Nota de Admisión Final</strong></span>
+      <span class="breakdown-val" style="color:var(--green);font-size:16px">${total.toFixed(2)}</span>
+    </div>`;
+  }
+  return html;
+}
+
+function validateInput(id, val, min, max) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (el.value === '') {
+    el.classList.remove('valid', 'invalid');
+  } else if (!isNaN(val) && val >= min && val <= max) {
+    el.classList.add('valid');
+    el.classList.remove('invalid');
+  } else {
+    el.classList.add('invalid');
+    el.classList.remove('valid');
+  }
+}
+
+// ================================================================
+// INIT
+// ================================================================
+renderSpec();
+</script>
+</body>
+</html>
