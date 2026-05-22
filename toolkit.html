@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#04060d">
-  <title>Student Toolkit v2.1 — PomodoroXP</title>
+  <title>Student Toolkit v2.2 — PomodoroXP</title>
   <meta name="description" content="Centro de mando para estudiantes: calculadoras, generador APA, estadística, ecuaciones, matrices y más.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,6 +66,10 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
   grid-template-columns:1fr 1fr;
   gap:16px;
   margin-bottom:16px;
+}
+.kings-row .king-full {
+  grid-column: 1 / -1;
+  height: 38vh; min-height: 260px; max-height: 400px;
 }
 
 /* ── Base de rey ── */
@@ -164,6 +168,14 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
 .king-notas .king-glow { background:radial-gradient(ellipse at top left,rgba(255,214,0,.12),transparent 55%); }
 .king-notas .king-cta  { background:rgba(255,214,0,.15); border:1.5px solid rgba(255,214,0,.5); color:var(--gold); }
 .king-notas .king-cta:hover { background:rgba(255,214,0,.3); box-shadow:0 0 30px rgba(255,214,0,.35); transform:translateY(-2px); }
+
+/* ORANGE — EVAU */
+.king-evau { border-color:rgba(255,107,53,.22); }
+.king-evau .king-bg   { background:linear-gradient(135deg,#1a0a00,#120600,#241200,#0a0500,#1e0e00); }
+.king-evau:hover      { border-color:#ff6b35; box-shadow:0 0 80px rgba(255,107,53,.3), 0 0 160px rgba(255,107,53,.12), inset 0 0 80px rgba(255,107,53,.04); }
+.king-evau .king-glow { background:radial-gradient(ellipse at center,rgba(255,107,53,.12),transparent 55%); }
+.king-evau .king-cta  { background:rgba(255,107,53,.13); border:1.5px solid rgba(255,107,53,.45); color:#ff6b35; }
+.king-evau .king-cta:hover { background:rgba(255,107,53,.28); box-shadow:0 0 30px rgba(255,107,53,.35); transform:translateY(-2px); }
 
 /* FOCUS CYAN */
 .king-apa  { border-color:rgba(0,212,255,.22); }
@@ -355,7 +367,7 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
   </div>
   <div class="topbar-right">
     <button class="help-btn" id="btn-help" title="Ayuda">?</button>
-    <span class="topbar-badge">v2.1</span>
+    <span class="topbar-badge">v2.2</span>
     <a href="index.html" class="topbar-back">&#8592; Timer</a>
   </div>
 </nav>
@@ -372,6 +384,20 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
        ZONA SUPERIOR — LOS REYES
        ══════════════════════════════ -->
   <div class="kings-row">
+
+    <!-- REY 0 — CALCULADORA EVAU (NARANJA, FULL WIDTH) -->
+    <a class="king king-evau king-full" href="evau.html">
+      <div class="king-bg"></div>
+      <div class="king-glass"></div>
+      <div class="king-icon">🎓</div>
+      <div class="king-glow"></div>
+      <div class="king-content">
+        <div class="king-tag" style="color:#ff6b35">🔥 Nuevo — Selectividad 2026</div>
+        <div class="king-title" style="color:#ff6b35">Calculadora<br>Nota EvAU</div>
+        <div class="king-desc">Calcula tu nota de acceso (sobre 10) y tu nota de admisión (sobre 14) en tiempo real. Todas las comunidades autónomas, con ponderaciones de la fase específica.</div>
+        <span class="king-cta">Calcular mi nota →</span>
+      </div>
+    </a>
 
     <!-- REY 1 — CALCULADORA DE NOTAS (DORADO) -->
     <a class="king king-notas" href="calculadora.html">
@@ -430,6 +456,10 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
         <a class="wt" href="matrices.html">
           <span class="wt-icon">&#128290;</span>
           <span class="wt-name">Matrices</span>
+        </a>
+        <a class="wt" href="evau.html" style="border-color:rgba(255,107,53,.15)">
+          <span class="wt-icon">🎓</span>
+          <span class="wt-name">EvAU</span>
         </a>
       </div>
     </div>
@@ -508,7 +538,7 @@ body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif;
   <!-- FOOTER -->
   <div class="tk-footer">
     <div style="font-family:'Orbitron',monospace;font-size:12px;color:var(--focus);margin-bottom:5px">&#127813; PomodoroXP</div>
-    <div style="margin-bottom:10px;font-size:10px">Student Toolkit &middot; v2.1</div>
+    <div style="margin-bottom:10px;font-size:10px">Student Toolkit &middot; v2.2</div>
     <a href="index.html">&#9203; Timer</a>
     <a href="dashboard.html">&#128202; Dashboard</a>
     <a href="privacy.html">Privacidad</a>
