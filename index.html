@@ -2,11 +2,13 @@
 <html lang="es">
 <head>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9027862604686644"
-     crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta name="google-site-verification" content="gL43k_Jz43wu7pJj7ag4O2nzetiAgJcF5n2Ij3eEgf8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PomodoroXP — Motor de Estudio</title>
+<meta name="description" content="PomodoroXP es una web gratuita para estudiantes con temporizador Pomodoro, gamificacion, estadisticas y herramientas academicas como calculadoras, PDF, matrices, EvAU y generador APA.">
+<link rel="canonical" href="https://herramientas-estudiantes.github.io/">
 <meta name="theme-color" content="#04060d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3140,7 +3142,7 @@ function showSessionSummary() {
   if (streak > 1) shareText += ` Llevo una racha de ${streak} días 🔥`;
   if (cycleJustDone) shareText += ` ¡Y acabo de cerrar un ciclo completo de ${S.cfg.interval} pomodoros! 🏆`;
   if (mission) shareText += ` Trabajando en: "${mission.name}"`;
-  shareText += ` pausanchezperea.github.io`;
+  shareText += ` herramientas-estudiantes.github.io`;
 
   const shareBtn = document.getElementById('btn-session-share');
   if (shareBtn) {
@@ -3158,13 +3160,13 @@ function showSessionSummary() {
 // v1.6 — Compartir progreso con Web Share API
 async function shareProgress() {
   const btn  = document.getElementById('btn-session-share');
-  const text = btn?._shareText || `¡Pomodoro #${S.totalPomos} completado! Racha de ${S.streak} días 🔥 pausanchezperea.github.io`;
+  const text = btn?._shareText || `¡Pomodoro #${S.totalPomos} completado! Racha de ${S.streak} días 🔥 herramientas-estudiantes.github.io`;
 
   try {
     await navigator.share({
       title: 'PomodoroXP — Mi progreso',
       text,
-      url:   'https://pausanchezperea.github.io'
+      url:   'https://herramientas-estudiantes.github.io'
     });
   } catch(e) {
     // El usuario canceló o el navegador no soporta share — fallback silencioso
@@ -3257,8 +3259,8 @@ function notifyUser(title, body) {
   try {
     new Notification(title, {
       body,
-      icon: 'https://pausanchezperea.github.io/favicon.ico',
-      badge: 'https://pausanchezperea.github.io/favicon.ico',
+      icon: 'https://herramientas-estudiantes.github.io/favicon.ico',
+      badge: 'https://herramientas-estudiantes.github.io/favicon.ico',
       tag: 'pomodoroxp',       // reemplaza la notif anterior en vez de apilar
       renotify: true
     });
@@ -3505,5 +3507,3 @@ console.log('%cTimer fix + Dashboard real data + Firebase sync ⚡','color:#5c78
 <script src="gamification.js"></script>
 </body>
 </html>
-
-
